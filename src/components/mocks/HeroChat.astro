@@ -32,7 +32,7 @@ const convs = [
         convs.map((c) => (
           <div class={'cm-conv' + (c.on ? ' on' : '')}>
             <div class="cm-conv-av">
-              <Avatar name={c.n} img={c.img} size={32} />
+              <Avatar name={c.n} img={c.img} size={32} loading="eager" />
             </div>
             <div class="cm-conv-body">
               <div class="cm-conv-r1">
@@ -50,7 +50,7 @@ const convs = [
     </div>
     <div class="cm-thread">
       <div class="cm-head">
-        <Avatar name="Marina Alves" img={mulher1} size={30} />
+        <Avatar name="Marina Alves" img={mulher1} size={30} loading="eager" fetchpriority="high" />
         <div class="cm-head-id">
           <b>Marina Alves</b>
           <em>+55 21 99812-3344</em>

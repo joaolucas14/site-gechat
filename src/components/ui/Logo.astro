@@ -10,12 +10,27 @@ interface Props {
   /** variante para fundos escuros */
   dark?: boolean;
   class?: string;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
 }
 
-const { symbol = false, dark = false, class: className } = Astro.props;
+const {
+  symbol = false,
+  dark = false,
+  class: className,
+  loading = 'lazy',
+  fetchpriority = 'auto',
+} = Astro.props;
 
 // TODO: o handoff não trouxe o logo-h-dark.svg — solicitar; por ora o light cobre.
 const src = symbol ? (dark ? symbolDark : symbolLight) : logoLight;
 ---
 
-<img src={src.src} alt="gechat" class={className} draggable="false" />
+<img
+  src={src.src}
+  alt="gechat"
+  class={className}
+  draggable="false"
+  loading={loading}
+  fetchpriority={fetchpriority}
+/>

@@ -102,7 +102,7 @@ const stars = Array.from({ length: 64 }, () => {
 
         <!-- nav rail (recolhida) -->
         <aside class="bs-rail" aria-hidden="true">
-          <Logo symbol class="bs-rail-logo" />
+          <Logo symbol class="bs-rail-logo" loading="eager" />
           <nav class="bs-nav">
             {nav.map((it) => (
               <span class={'bs-nav-item' + (it.on ? ' on' : '')} title={it.t}>
@@ -156,7 +156,7 @@ const stars = Array.from({ length: 64 }, () => {
             <span class="bs-empty-mark">
               <span class="bs-ring r1"></span>
               <span class="bs-ring r2"></span>
-              <Logo symbol dark class="bs-empty-sym" />
+              <Logo symbol dark class="bs-empty-sym" loading="eager" />
             </span>
             <span class="eyebrow center">Existe um jeito melhor</span>
             <p class="bs-empty-line">
