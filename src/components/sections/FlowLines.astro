@@ -1,0 +1,56 @@
+---
+/* Linhas fluidas contínuas que atravessam o hero e morrem no topo da
+   seção seguinte (dentro do wrapper .continuum). Puramente decorativas:
+   o SVG é desenhado por script a partir da altura real do hero. */
+---
+
+<div class="flow-lines" aria-hidden="true"></div>
+
+<style is:global>
+  .continuum { position: relative; }
+  .flow-lines {
+    position: absolute; top: 0; left: 0; right: 0;
+    z-index: 0; pointer-events: none; overflow: hidden;
+  }
+  .flow-lines svg { position: absolute; top: 0; left: 0; }
+  .flow-lines path { fill: none; stroke: rgba(139, 68, 255, .12); stroke-width: 1; }
+</style>
+
+<script>
+  // Redesenha as linhas sempre que a altura do hero muda (mesma geometria
+  // e máscara do protótipo: opacas no topo, esmaecendo dentro dos pilares).
+  const wrap = document.querySelector<HTMLElement>('.flow-lines');
+  const hero = document.querySelector<HTMLElement>('.continuum .hero');
+
+  if (wrap && hero) {
+    const draw = () => {
+      const b = hero.offsetHeight; // fronteira: topo da seção seguinte
+      const STEP = 86;
+      const first = 56;
+      const lastY = b + 532;
+      const height = lastY + 24;
+
+      const paths: string[] = [];
+      for (let y = first; y <= lastY; y += STEP) {
+        paths.push(
+          `<path d="M-20 ${y} C 180 ${y - 40}, 360 ${y + 40}, 600 ${y} S 1020 ${y - 40}, 1220 ${y}"/>`,
+        );
+      }
+
+      const mask =
+        `linear-gradient(180deg,#000 0px,#000 ${Math.round(b * 0.42)}px,` +
+        `rgba(0,0,0,.32) ${b + 90}px,rgba(0,0,0,.32) ${b + 430}px,transparent ${b + 532}px)`;
+
+      wrap.style.height = `${height}px`;
+      wrap.style.webkitMaskImage = mask;
+      wrap.style.maskImage = mask;
+      wrap.innerHTML =
+        `<svg viewBox="0 0 1200 ${height}" preserveAspectRatio="none" width="100%" height="${height}">` +
+        paths.join('') +
+        '</svg>';
+    };
+
+    draw();
+    new ResizeObserver(draw).observe(hero);
+  }
+</script>

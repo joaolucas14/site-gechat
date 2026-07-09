@@ -1,0 +1,61 @@
+/* ============================================================
+   Segunda dobra — dois pilares (vários números / toda a equipe).
+   Portado do protótipo.
+   ============================================================ */
+
+.pillars { padding: 60px 0 48px; background: linear-gradient(180deg, transparent 0%, transparent 200px, var(--surface) 430px); position: relative; z-index: 2; overflow: hidden; }
+.pillars .orb-p1 { top: 34%; right: -90px; width: 540px; height: 540px; background: radial-gradient(circle at 50% 50%, rgba(139, 68, 255, .24), rgba(139, 68, 255, 0) 68%); }
+.pillars .orb-p2 { top: 150px; left: -130px; width: 460px; height: 460px; background: radial-gradient(circle at 50% 50%, rgba(74, 26, 158, .16), rgba(74, 26, 158, 0) 70%); }
+.pillars .wrap { position: relative; z-index: 2; }
+.pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 56px; align-items: stretch; }
+.pillar {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 52px 32px 32px; border-radius: var(--r-lg);
+  border: 1px solid var(--line); background: var(--bg);
+  box-shadow: var(--shadow-soft);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.pillar:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--line-2); }
+
+/* medalhão centralizado, atravessando a linha do topo do card */
+.pillar-medal {
+  position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
+  width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center;
+  background: linear-gradient(145deg, var(--pri-strong), var(--pri-deep)); color: #fff;
+  box-shadow: 0 0 0 6px var(--surface), 0 8px 18px -9px var(--pri);
+  transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+}
+.pillar:hover .pillar-medal { transform: translate(-50%, -50%) scale(1.06) rotate(-3deg); }
+.pillar-medal .ic { width: 26px; height: 26px; }
+
+.pillar-tag { margin-top: 4px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--pri-strong); }
+.pillar h3 { font-family: var(--site-display); font-weight: 800; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -.02em; line-height: 1.08; margin: 12px 0 0; color: var(--ink); }
+.pillar > p { margin: 12px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--muted); }
+.pillar-stage { margin-top: auto; padding-top: 26px; align-self: stretch; text-align: left; }
+/* iguala a altura das duas animações para harmonizar a seção */
+.pillar-stage .mock { display: flex; flex-direction: column; justify-content: center; min-height: 260px; }
+
+/* empilhados: o gap precisa acomodar o medalhão que vaza acima de cada card */
+@media (max-width: 860px) { .pillars-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+/* --- tipografia compacta (consolidado no protótipo) --- */
+.pillars-cf .sec-head h2 { font-size: clamp(26px, 3.2vw, 38px); }
+.pillars-cf .sec-head .lede { font-size: clamp(14px, 1.5vw, 16px); }
+.pillars-cf .pillar h3 { font-size: clamp(20px, 2.2vw, 26px); }
+.pillars-cf .pillar > p { font-size: 14.5px; }
+
+@media (max-width: 620px) {
+  .pillars { padding: 40px 0 40px; }
+  .pillars-grid { margin-top: 40px; }
+
+  /* mock de transferência: altura fixa evita que a troca de frase
+     (que às vezes quebra em 2 linhas) faça a página inteira refluir */
+  .pillar-stage .mock { height: 260px; }
+  .tm-node > div:first-of-type { flex: 1 1 auto; min-width: 0; }
+  .tm-node .role { min-height: 32px; }
+  .tm .tagx.dept { display: none; }
+}
+@media (max-width: 480px) {
+  .pillar { padding: 48px 22px 28px; }
+}

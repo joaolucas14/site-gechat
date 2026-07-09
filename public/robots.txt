@@ -1,0 +1,6 @@
+# gechat — site comercial
+User-agent: *
+Allow: /
+
+# TODO: atualizar o domínio quando for definido
+Sitemap: https://gechat.com.br/sitemap-index.xml

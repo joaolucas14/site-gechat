@@ -1,0 +1,41 @@
+---
+/* Segunda dobra: os dois pilares do produto (todos os números /
+   toda a equipe), cada um com seu mock animado. Vive dentro do
+   .continuum, atravessado pelas linhas fluidas do hero. */
+import SectionHead from '../ui/SectionHead.astro';
+import Icon from '../ui/Icon.astro';
+import MultiNumber from '../mocks/MultiNumber.astro';
+import Transfer from '../mocks/Transfer.astro';
+import '../../styles/sections/pillars.css';
+---
+
+<section class="pillars pillars-cf">
+  <span class="orb orb-p1"></span>
+  <span class="orb orb-p2"></span>
+  <div class="wrap">
+    <SectionHead center eyebrow="O padrão de quem leva atendimento a sério">
+      <Fragment slot="title">Vários números, vários atendentes<br />numa central só</Fragment>
+      <Fragment slot="lede">
+        Quando a empresa cresce, o WhatsApp comum não acompanha.<br />
+        Integrar a equipe e ter controle do atendimento deixou de ser diferencial:<br />
+        É o que separa quem improvisa de quem profissionaliza.
+      </Fragment>
+    </SectionHead>
+    <div class="pillars-grid">
+      <div class="reveal from-l d1 pillar">
+        <span class="pillar-medal"><Icon name="eye" /></span>
+        <span class="pillar-tag">Visão global</span>
+        <h3>Todos os números</h3>
+        <p>Conecte quantos números quiser e saiba tudo que está sendo dito em cada conversa.</p>
+        <div class="pillar-stage"><MultiNumber /></div>
+      </div>
+      <div class="reveal from-r d2 pillar">
+        <span class="pillar-medal"><Icon name="transfer" /></span>
+        <span class="pillar-tag">Operação unida</span>
+        <h3>Toda a equipe</h3>
+        <p>Una vendas, suporte e financeiro num só fluxo e transfira atendimentos sem ruído nem retrabalho.</p>
+        <div class="pillar-stage"><Transfer /></div>
+      </div>
+    </div>
+  </div>
+</section>

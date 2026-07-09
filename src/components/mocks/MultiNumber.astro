@@ -1,0 +1,38 @@
+---
+/* Mock "todos os números num só lugar": os cards de número
+   acendem em sequência (roteiro de 4 passos, 800ms). */
+import MockWindow from '../ui/MockWindow.astro';
+import Icon from '../ui/Icon.astro';
+
+const lines = [
+  { n: 'Comercial', num: '+55 21 4108-7746', c: '#2F6BFF' },
+  { n: 'Suporte', num: '+55 21 4002-8922', c: '#15B36A' },
+  { n: 'Loja Centro', num: '+55 21 3030-1010', c: '#F59E0B' },
+];
+---
+
+<MockWindow data-step-mock data-steps="4" data-interval="800" aria-hidden="true">
+  <div class="nm-stack">
+    {
+      lines.map((l, i) => (
+        <div class="nm-card" data-step-in={i + 1}>
+          <span class="wa-ic" style={`background:${l.c}`}>
+            <Icon name="whatsapp_real" />
+          </span>
+          <div>
+            <div class="nm">{l.n}</div>
+            <div class="num">{l.num}</div>
+          </div>
+          <span class="st">
+            <span class="dot" />
+            Conectado
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</MockWindow>
+
+<script>
+  import '../../scripts/step-mock';
+</script>

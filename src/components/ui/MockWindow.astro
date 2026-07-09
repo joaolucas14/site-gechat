@@ -1,0 +1,14 @@
+---
+/* Shell de janela dos mocks do sistema (cartão com glow roxo). */
+interface Props {
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { class: className = '', ...rest } = Astro.props;
+---
+
+<div class={('mock ' + className).trim()} {...rest}>
+  <div class="mock-glow"></div>
+  <slot />
+</div>

@@ -1,0 +1,25 @@
+---
+/* Cartões flutuantes de métricas ao redor do mock do hero (desktop). */
+import Icon from '../ui/Icon.astro';
+
+const cards = [
+  { ic: 'message', bg: 'rgba(21,179,106,.14)', color: '#15B36A', t: '18 em atendimento', s: 'neste momento', pos: 'top:-13%;left:-7%', float: 'floaty slow' },
+  { ic: 'hourglass', bg: 'var(--pri-soft)', color: 'var(--pri-strong)', t: '5 na fila', s: 'aguardando agora', pos: 'top:-16%;right:-4%', float: 'floaty delay' },
+  { ic: 'star', bg: 'rgba(245,158,11,.16)', color: '#F59E0B', t: '4,9 / 5', s: 'satisfação', pos: 'bottom:5%;right:-7%', float: 'floaty delay' },
+  { ic: 'timer', bg: 'rgba(91,108,255,.14)', color: '#5B6CFF', t: 'Fila · 2 min', s: 'tempo médio', pos: 'bottom:-3%;left:-4%', float: 'floaty' },
+];
+---
+
+{
+  cards.map((c) => (
+    <div class={'float-card ' + c.float} style={c.pos}>
+      <span class="fc-ic" style={`background:${c.bg};color:${c.color}`}>
+        <Icon name={c.ic} />
+      </span>
+      <div>
+        <div class="fc-t">{c.t}</div>
+        <div class="fc-s">{c.s}</div>
+      </div>
+    </div>
+  ))
+}

@@ -1,0 +1,73 @@
+---
+/* Ícone do design system: recebe o nome usado no protótipo e resolve
+   para o ícone Lucide equivalente (ou local, em src/icons/). */
+import { Icon as BaseIcon } from 'astro-icon/components';
+
+/** nome do design → ícone Lucide / local */
+const ICONS: Record<string, string> = {
+  arrow_right: 'lucide:arrow-right',
+  arrow_down: 'lucide:arrow-down',
+  check: 'lucide:check',
+  check_circle: 'lucide:circle-check',
+  check_double: 'lucide:check-check',
+  clock: 'lucide:clock',
+  timer: 'lucide:timer',
+  hourglass: 'lucide:hourglass',
+  users: 'lucide:users',
+  user: 'lucide:user-round',
+  message: 'lucide:message-square',
+  message_dashed: 'lucide:message-square-dashed',
+  whatsapp: 'whatsapp',
+  whatsapp_real: 'whatsapp',
+  calendar: 'lucide:calendar',
+  calendar_days: 'lucide:calendar-days',
+  tag: 'lucide:tag',
+  zap: 'lucide:zap',
+  bolt: 'lucide:zap',
+  bot: 'lucide:bot',
+  transfer: 'lucide:arrow-right-left',
+  chart: 'lucide:chart-column',
+  building: 'lucide:building',
+  star: 'lucide:star',
+  shield: 'lucide:shield',
+  smile: 'lucide:smile',
+  phone: 'lucide:phone',
+  sliders: 'lucide:sliders-horizontal',
+  inbox: 'lucide:inbox',
+  history: 'lucide:history',
+  play: 'lucide:play',
+  sparkles: 'lucide:sparkles',
+  ghost: 'lucide:ghost',
+  moon: 'lucide:moon',
+  repeat: 'lucide:repeat',
+  layers: 'lucide:layers',
+  heart: 'lucide:heart',
+  flag: 'lucide:flag',
+  eye: 'lucide:eye',
+  lock: 'lucide:lock',
+  trending: 'lucide:trending-up',
+  grid: 'lucide:layout-dashboard',
+  contact: 'lucide:contact',
+  settings: 'lucide:settings',
+  search: 'lucide:search',
+  plus: 'lucide:plus',
+  minus: 'lucide:minus',
+  paperclip: 'lucide:paperclip',
+  panel_left: 'lucide:panel-left',
+  card: 'lucide:credit-card',
+};
+
+interface Props {
+  name: string;
+  class?: string;
+  style?: string;
+}
+
+const { name, class: className = '', style } = Astro.props;
+const resolved = ICONS[name];
+if (!resolved) {
+  throw new Error(`Ícone desconhecido: "${name}" — adicione ao mapa em Icon.astro`);
+}
+---
+
+<BaseIcon name={resolved} class={('ic ' + className).trim()} style={style} />

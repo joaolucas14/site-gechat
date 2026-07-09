@@ -1,0 +1,19 @@
+---
+/* Cena 3 da dor: dois atendentes respondem o mesmo cliente.
+   A segunda resposta ganha contorno vermelho no ato final. */
+import Icon from '../ui/Icon.astro';
+---
+
+<div class="pain-mock pc" data-step-mock data-steps="4" data-interval="1300" data-hold="2400" aria-hidden="true">
+  <div class="pain-scene">
+    <div class="pc-msg beat" data-step-in="1"><b>Ana</b>Bom dia! Como posso ajudar?</div>
+    <div class="pc-msg beat" data-step-in="2" data-step-in-eq="3"><b>Pedro</b>Oi! Em que posso ajudar?</div>
+    <div class="pain-verdict-line beat" data-step-in="3">
+      <Icon name="repeat" /> Dois atendentes, resposta dobrada
+    </div>
+  </div>
+</div>
+
+<script>
+  import '../../scripts/step-mock';
+</script>

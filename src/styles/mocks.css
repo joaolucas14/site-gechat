@@ -1,0 +1,123 @@
+/* ============================================================
+   Mocks do sistema (app shell + chat) — compartilhados entre
+   seções (Hero, Respira). Portado 1:1 do protótipo site.css.
+   ============================================================ */
+
+.mock {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 20px; box-shadow: var(--shadow-card); overflow: hidden;
+  position: relative;
+}
+.mock-glow { position: absolute; inset: -1px; border-radius: 21px; pointer-events: none; box-shadow: var(--glow); opacity: .5; }
+
+/* elementos de roteiro passo-a-passo: escondidos até o script ligar */
+[data-step][hidden] { display: none !important; }
+
+/* chat mock — fiel ao sistema real */
+.cm { display: grid; grid-template-columns: 198px 1fr; min-height: 326px; }
+.cm-list { border-right: 1px solid var(--line); background: var(--surface); padding: 12px 9px 8px; overflow: hidden; }
+.cm-list-head { padding: 0 6px 9px; }
+.cm-list-head b { font-size: 15px; font-weight: 800; letter-spacing: -.02em; color: var(--ink); display: block; line-height: 1.1; }
+.cm-list-head em { font-size: 10.5px; font-style: normal; color: var(--soft); font-weight: 500; }
+.cm-tabs { display: flex; gap: 13px; border-bottom: 1px solid var(--line); padding: 0 5px; margin-bottom: 8px; }
+.cm-tab { position: relative; display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 700; color: var(--soft); padding: 7px 0; }
+.cm-tab .ct-count { font-size: 9px; font-weight: 800; line-height: 1; padding: 2px 5px; border-radius: 999px; background: var(--bg-2); color: var(--soft); }
+.cm-tab.on { color: var(--pri-strong); }
+.cm-tab.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2.5px; background: var(--pri); border-radius: 3px 3px 0 0; }
+.cm-tab.on .ct-count { background: var(--pri); color: #fff; }
+
+.cm-conv { position: relative; display: flex; gap: 9px; padding: 9px 8px; border-radius: 12px; }
+.cm-conv.on { background: color-mix(in srgb, var(--pri) 7%, transparent); }
+.cm-conv:not(:last-child)::after { content: ""; position: absolute; left: 47px; right: 8px; bottom: 0; height: 1px; background: var(--line); }
+.cm-conv.on::after { opacity: 0; }
+.cm-conv-av { position: relative; flex: 0 0 auto; align-self: center; }
+.cm-conv-av .avi { width: 32px; height: 32px; font-size: 12px; }
+.cm-conv-r2 { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+.cm-conv-r2 .cm-conv-pv { flex: 1 1 auto; min-width: 0; margin-top: 0; }
+.cm-conv-body { flex: 1 1 auto; min-width: 0; }
+.cm-conv-r1 { display: flex; align-items: center; gap: 6px; }
+.cm-conv-nm { flex: 1 1 auto; min-width: 0; font-size: 12.5px; font-weight: 700; color: var(--ink); letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cm-conv-time { flex: 0 0 auto; font-size: 9.5px; font-weight: 600; color: var(--soft); }
+.cm-conv.on .cm-conv-time { color: var(--pri-strong); }
+.cm-conv-pv { font-size: 11px; font-weight: 500; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+.cm-conv-pv .tk { color: var(--pri); font-weight: 700; margin-right: 2px; }
+.cm-conv-meta { display: flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 10.5px; min-width: 0; }
+.cm-route-ic { width: 13px; height: 13px; flex: 0 0 auto; }
+.cm-route-ch { font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+.cm-route-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--soft); flex: 0 0 auto; }
+.cm-route-dep { font-weight: 600; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cm-conv-unread { flex: 0 0 auto; align-self: center; min-width: 16px; height: 16px; padding: 0 5px; border-radius: 999px; background: var(--pri); color: #fff; font-size: 9.5px; font-weight: 800; display: grid; place-items: center; }
+
+.cm-thread { background: #ece4da; position: relative; padding: 58px 13px 13px; display: flex; flex-direction: column; gap: 6px; background-image: radial-gradient(rgba(74, 26, 158, .05) 1.1px, transparent 1.1px); background-size: 17px 17px; }
+.cm-head { position: absolute; top: 11px; left: 11px; right: 11px; height: 46px; display: flex; align-items: center; gap: 9px; padding: 0 9px; background: var(--surface); border: 1px solid var(--line); border-radius: 13px; box-shadow: 0 7px 20px -12px rgba(10, 0, 102, .4); z-index: 3; }
+.cm-head .avi { width: 30px; height: 30px; font-size: 11px; }
+.cm-head-id { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.cm-head-id b { font-size: 12.5px; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+.cm-head-id em { font-size: 10px; font-style: normal; font-weight: 500; color: var(--soft); }
+.cm-head-chan { margin-left: auto; display: flex; align-items: center; gap: 7px; height: 32px; padding: 0 9px; border: 1px solid var(--line); border-radius: 10px; flex: 0 0 auto; }
+.cm-head-chan .ic { width: 16px; height: 16px; flex: 0 0 auto; }
+.cm-head-chan-tx { display: flex; flex-direction: column; line-height: 1.2; }
+.cm-head-chan-tx b { font-size: 10.5px; font-weight: 700; color: var(--ink); }
+.cm-head-chan-tx em { font-size: 8.5px; font-style: normal; color: var(--soft); }
+
+.cm-log { align-self: center; font-size: 9.5px; font-weight: 600; color: var(--pri-deep); background: rgba(74, 26, 158, .08); padding: 4px 11px; border-radius: 999px; margin: 2px 0; }
+.cmb { max-width: 80%; padding: 6px 9px 4px; border-radius: 9px; font-size: 11.5px; line-height: 1.36; color: #1B1245; box-shadow: 0 1px 1px rgba(11, 20, 26, .12), 0 1px 0 rgba(11, 20, 26, .03); }
+.cmb.in { align-self: flex-start; background: #ffffff; border-top-left-radius: 0; }
+.cmb.out { align-self: flex-end; background: #e7f6d8; border-top-right-radius: 0; }
+.cmb-meta { display: flex; align-items: center; justify-content: flex-end; gap: 3px; font-size: 9px; color: #7A8194; margin-top: 1px; }
+.cmb-meta .cmb-tk { width: 15px; height: 15px; color: #2F8AF5; margin-left: 1px; }
+.cmb.note { align-self: stretch; max-width: 100%; background: #FFF7E0; border: 1px solid rgba(245, 179, 1, .4); border-left: 3px solid #E0A000; border-radius: 8px; color: #7A5800; box-shadow: none; }
+.cmb.note b { display: flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; color: #B07A00; margin-bottom: 2px; }
+.cmb.note b .ic { width: 11px; height: 11px; }
+.typing { align-self: flex-start; display: inline-flex; gap: 4px; padding: 9px 11px; background: #fff; border-radius: 9px; border-top-left-radius: 0; box-shadow: 0 1px 1px rgba(11, 20, 26, .12); }
+.typing i { width: 5px; height: 5px; border-radius: 50%; background: var(--soft); animation: tdot 1.2s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s } .typing i:nth-child(3) { animation-delay: .3s }
+@keyframes tdot { 0%, 60%, 100% { transform: translateY(0); opacity: .45 } 30% { transform: translateY(-4px); opacity: 1 } }
+
+/* ---------- chips de canal / setor ---------- */
+.tagx { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; padding: 4px 9px; border-radius: 999px; }
+.chan { background: rgba(31, 168, 85, .12); color: var(--wa); }
+.chan .ic { width: 13px; height: 13px; }
+.dept { background: var(--bg-2); color: var(--ink-soft); }
+
+/* ---------- multi número mock ---------- */
+.nm-stack { padding: 18px; display: grid; gap: 12px; }
+.nm-card { display: flex; align-items: center; gap: 12px; padding: 13px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); }
+.nm-card .wa-ic { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; color: #fff; flex: 0 0 auto; }
+.nm-card .wa-ic .ic { width: 20px; height: 20px; }
+.nm-card .nm { font-size: 14px; font-weight: 700; }
+.nm-card .num { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.nm-card .st { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: var(--green); }
+.nm-card .st .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+/* entrada em sequência (roteiro): apagado → aceso */
+.nm-card[data-step-in] { opacity: .3; transform: translateY(8px); transition: all .5s; }
+.nm-card[data-step-in].is-on { opacity: 1; transform: none; }
+
+/* ---------- transferência mock ---------- */
+.tm { padding: 22px 18px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.tm-node { display: flex; align-items: center; gap: 11px; padding: 12px 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); width: 100%; box-shadow: var(--shadow-soft); transition: all .5s; }
+.tm-node.on { border-color: var(--pri); box-shadow: var(--glow); }
+.tm-node .avi { width: 34px; height: 34px; font-size: 13px; }
+.tm-node .nm { font-size: 13.5px; font-weight: 700; }
+.tm-node .role { font-size: 11.5px; color: var(--muted); }
+.tm-side { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.tm .tagx.dept { transition: all .5s; }
+.tm-node.on .tagx.dept { background: var(--pri-soft); color: var(--pri-strong); }
+.tm-arrow { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--pri); color: #fff; box-shadow: var(--glow); }
+.tm-arrow .ic { width: 18px; height: 18px; }
+
+/* troca suave de frase (RoleSwap): a antiga sai subindo, intervalo vazio,
+   a nova entra de baixo — fases aplicadas pelo scripts/transfer.ts */
+.rs { position: relative; overflow: hidden; }
+.rs-size { visibility: hidden; display: block; }
+.rs-anim { position: absolute; left: 0; right: 0; top: 0; will-change: transform, opacity; }
+.rs-anim.exit { transition: transform .5s cubic-bezier(.4, 0, .55, 1), opacity .5s ease; opacity: 0; transform: translateY(-95%); }
+.rs-anim.hold { transition: none; opacity: 0; transform: translateY(95%); }
+.rs-anim.enter { transition: transform .55s cubic-bezier(.2, .75, .3, 1), opacity .55s ease; opacity: 1; transform: translateY(0); }
+
+/* avatar do cliente que viaja entre os cards, em sincronia com a frase */
+.tv { width: 26px; height: 26px; flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; }
+.tv-in { display: inline-flex; will-change: transform, opacity; }
+.tv-in.exit { transition: transform .5s cubic-bezier(.4, 0, .55, 1), opacity .5s ease; opacity: 0; transform: translateY(-55%) scale(.6); }
+.tv-in.gone { transition: none; opacity: 0; transform: translateY(55%) scale(.6); }
+.tv-in.enter { transition: transform .55s cubic-bezier(.2, .75, .3, 1), opacity .55s ease; opacity: 1; transform: translateY(0) scale(1); }

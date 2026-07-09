@@ -1,0 +1,85 @@
+---
+/* Mock do hero (desktop): app de atendimento ao vivo.
+   Roteiro em 6 passos (1250ms): mensagem chega → digitando → resposta →
+   réplica → confirmação, em loop (ver scripts/step-mock.ts). */
+import MockWindow from '../ui/MockWindow.astro';
+import Avatar from '../ui/Avatar.astro';
+import Icon from '../ui/Icon.astro';
+import mulher1 from '../../assets/avatars/mulher-1.png';
+import mulher2 from '../../assets/avatars/mulher-2.png';
+import homem1 from '../../assets/avatars/homem-1.png';
+
+const convs = [
+  { n: 'Marina Alves', img: mulher1, pv: 'Oi! Vocês têm o kit em estoque?', t: '14:02', on: true, unread: 0 },
+  { n: 'Rodrigo Lima', img: homem1, pv: 'Pode ser amanhã às 14h?', t: '13:48', on: false, unread: 2 },
+  { n: 'Bruna Costa', img: mulher2, pv: 'Obrigada pelo atendimento!', t: '13:11', on: false, unread: 0 },
+];
+---
+
+<MockWindow class="hero-screen" data-step-mock data-steps="6" data-interval="1250">
+  <div class="cm">
+    <div class="cm-list">
+      <div class="cm-list-head">
+        <b>Atendimento</b>
+        <em>Com você · 4 conversas</em>
+      </div>
+      <div class="cm-tabs">
+        <span class="cm-tab">Bot <span class="ct-count">3</span></span>
+        <span class="cm-tab">Fila <span class="ct-count">5</span></span>
+        <span class="cm-tab on">Meus <span class="ct-count">4</span></span>
+      </div>
+      {
+        convs.map((c) => (
+          <div class={'cm-conv' + (c.on ? ' on' : '')}>
+            <div class="cm-conv-av">
+              <Avatar name={c.n} img={c.img} size={32} />
+            </div>
+            <div class="cm-conv-body">
+              <div class="cm-conv-r1">
+                <span class="cm-conv-nm">{c.n}</span>
+                <span class="cm-conv-time">{c.t}</span>
+              </div>
+              <div class="cm-conv-r2">
+                <span class="cm-conv-pv">{c.pv}</span>
+                {c.unread > 0 && <span class="cm-conv-unread">{c.unread}</span>}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <div class="cm-thread">
+      <div class="cm-head">
+        <Avatar name="Marina Alves" img={mulher1} size={30} />
+        <div class="cm-head-id">
+          <b>Marina Alves</b>
+          <em>+55 21 99812-3344</em>
+        </div>
+        <div class="cm-head-chan">
+          <Icon name="whatsapp_real" style="color:#8B44FF" />
+          <span class="cm-head-chan-tx"><b>Comercial</b><em>Vendas</em></span>
+        </div>
+      </div>
+      <div class="cm-log">Você assumiu o atendimento · 14:02</div>
+      <div class="cmb in" data-step="1" hidden>
+        Oi! Vocês têm o kit em estoque? 😊<div class="cmb-meta">14:02</div>
+      </div>
+      <div class="typing" data-step-eq="2" hidden><i></i><i></i><i></i></div>
+      <div class="cmb out" data-step="3" hidden>
+        Temos sim, Marina! Posso já reservar pra você 💜
+        <div class="cmb-meta">14:03 <Icon name="check_double" class="cmb-tk" /></div>
+      </div>
+      <div class="cmb in" data-step="4" hidden>
+        Perfeito! Pode reservar 🙌<div class="cmb-meta">14:03</div>
+      </div>
+      <div class="cmb out" data-step="5" hidden>
+        Reservado ✅ Já te envio o link de pagamento
+        <div class="cmb-meta">14:04 <Icon name="check_double" class="cmb-tk" /></div>
+      </div>
+    </div>
+  </div>
+</MockWindow>
+
+<script>
+  import '../../scripts/step-mock';
+</script>

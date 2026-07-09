@@ -1,0 +1,48 @@
+---
+/* Mock do hero (mobile ≤620px): tela de conversa como no celular —
+   cabeçalho do contato + canal, balões ao vivo e composer.
+   Mesmo roteiro de 6 passos do mock desktop. */
+import Avatar from '../ui/Avatar.astro';
+import Icon from '../ui/Icon.astro';
+import mulher1 from '../../assets/avatars/mulher-1.png';
+---
+
+<div class="hmob-wrap" data-step-mock data-steps="6" data-interval="1250">
+  <span class="hmob-glow" aria-hidden="true"></span>
+  <div class="hmob">
+    <div class="hmob-top">
+      <span class="hmob-back"><Icon name="arrow_right" /></span>
+      <Avatar name="Marina Alves" img={mulher1} size={36} />
+      <div class="hmob-id">
+        <b>Marina Alves</b>
+        <em><Icon name="whatsapp_real" style="color:#8B44FF" /> Comercial · Vendas</em>
+      </div>
+    </div>
+    <div class="hmob-thread">
+      <div class="cm-log">Você assumiu o atendimento · 14:02</div>
+      <div class="cmb in" data-step="1" hidden>
+        Oi! Vocês têm o kit em estoque? 😊<div class="cmb-meta">14:02</div>
+      </div>
+      <div class="typing" data-step-eq="2" hidden><i></i><i></i><i></i></div>
+      <div class="cmb out" data-step="3" hidden>
+        Temos sim, Marina! Posso já reservar 💜
+        <div class="cmb-meta">14:03 <Icon name="check_double" class="cmb-tk" /></div>
+      </div>
+      <div class="cmb in" data-step="4" hidden>
+        Perfeito! Pode reservar 🙌<div class="cmb-meta">14:03</div>
+      </div>
+      <div class="cmb out" data-step="5" hidden>
+        Reservado ✅ Já te envio o link
+        <div class="cmb-meta">14:04 <Icon name="check_double" class="cmb-tk" /></div>
+      </div>
+    </div>
+    <div class="hmob-composer">
+      <span class="hmob-inp">Mensagem</span>
+      <span class="hmob-send"><Icon name="arrow_right" /></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  import '../../scripts/step-mock';
+</script>

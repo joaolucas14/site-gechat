@@ -1,0 +1,18 @@
+---
+/* Botão/link do design system (variantes pri | ghost | white | wa). */
+interface Props {
+  href: string;
+  variant?: 'pri' | 'ghost' | 'white' | 'wa';
+  size?: 'sm' | 'lg';
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const { href, variant = 'pri', size, class: className, ...rest } = Astro.props;
+const cls = ['btn', `btn-${variant}`, size && `btn-${size}`, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<a class={cls} href={href} {...rest}><slot /></a>

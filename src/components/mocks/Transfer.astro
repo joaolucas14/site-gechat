@@ -1,0 +1,51 @@
+---
+/* Mock de transferência entre setores: Ana (Vendas) passa a conversa
+   para Pedro (Suporte); a frase troca e o avatar da cliente viaja
+   entre os cards (ver scripts/transfer.ts). */
+import MockWindow from '../ui/MockWindow.astro';
+import Avatar from '../ui/Avatar.astro';
+import Icon from '../ui/Icon.astro';
+import mulher1 from '../../assets/avatars/mulher-1.png';
+import mulher3 from '../../assets/avatars/mulher-3.png';
+import homem4 from '../../assets/avatars/homem-4.png';
+---
+
+<MockWindow data-transfer-mock aria-hidden="true">
+  <div class="tm">
+    <div class="tm-node on">
+      <Avatar name="Ana Vendas" img={mulher3} size={34} />
+      <div>
+        <div class="nm">Ana · Vendas</div>
+        <div class="role rs" data-from="atendendo Marina" data-to="transferiu a conversa">
+          <span class="rs-size">atendendo Marina</span>
+          <span class="rs-anim">atendendo Marina</span>
+        </div>
+      </div>
+      <div class="tm-side">
+        <span class="tv"><span class="tv-in"><Avatar name="Marina Alves" img={mulher1} size={26} /></span></span>
+        <span class="tagx dept">Vendas</span>
+      </div>
+    </div>
+
+    <div class="tm-arrow floaty" style="animation-duration:3s"><Icon name="arrow_down" /></div>
+
+    <div class="tm-node">
+      <Avatar name="Pedro Suporte" img={homem4} size={34} />
+      <div>
+        <div class="nm">Pedro · Suporte</div>
+        <div class="role rs" data-from="disponível" data-to="recebeu com todo o histórico">
+          <span class="rs-size">disponível</span>
+          <span class="rs-anim">disponível</span>
+        </div>
+      </div>
+      <div class="tm-side">
+        <span class="tv"><span class="tv-in gone"><Avatar name="Marina Alves" img={mulher1} size={26} /></span></span>
+        <span class="tagx dept">Suporte</span>
+      </div>
+    </div>
+  </div>
+</MockWindow>
+
+<script>
+  import '../../scripts/transfer';
+</script>

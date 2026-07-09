@@ -1,0 +1,62 @@
+---
+/* Seção DOR (noite cinematográfica): os 3 erros previsíveis de quem
+   atende sem ferramenta, cada um com sua mini-cena sincronizada. */
+import SectionHead from '../ui/SectionHead.astro';
+import PainGhost from '../mocks/PainGhost.astro';
+import PainOffHours from '../mocks/PainOffHours.astro';
+import PainChaos from '../mocks/PainChaos.astro';
+import '../../styles/sections/pain.css';
+
+const pains = [
+  {
+    h: 'O atendente foi embora e o histórico foi junto',
+    p: 'Conversas no celular pessoal, contatos perdidos. Quem assume não sabe nada do cliente.',
+  },
+  {
+    h: 'Cliente chamou fora do horário e ninguém viu',
+    p: 'A mensagem chega de madrugada, ninguém responde, e a venda esfria até alguém abrir o WhatsApp.',
+  },
+  {
+    h: 'Equipe se confundiu nos atendimentos',
+    p: 'Dois respondem o mesmo cliente, outro fica sem resposta. Ninguém sabe quem está atendendo o quê.',
+  },
+];
+---
+
+<section class="sec night">
+  <div class="night-wave" aria-hidden="true">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none">
+      <path class="nw-fill" d="M-20 50 C 180 10, 360 90, 600 50 S 1020 10, 1220 50 L 1220 -2 L -20 -2 Z"></path>
+    </svg>
+  </div>
+  <span class="orb orb-n1" data-parallax="0.05"></span>
+  <span class="orb orb-n2" data-parallax="-0.04"></span>
+  <div class="dot-grid faded"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <SectionHead center eyebrow="Evolua seu atendimento com a ferramenta certa">
+      <Fragment slot="title">Quem erra menos, vende mais</Fragment>
+      <Fragment slot="lede">
+        Histórico que some e mensagens que ninguém vê são erros comuns<br />
+        quando não se tem controle do atendimento.<br />
+        Cliente bem atendido compra mais, confia mais e volta.
+      </Fragment>
+    </SectionHead>
+    <div class="pain-grid">
+      {
+        pains.map((pain, i) => (
+          <div class={`reveal scale-in d${i + 1} pain-card`}>
+            <span class="pain-badge">
+              <span class="pain-badge-num">{i + 1}</span>
+              Erro previsível
+            </span>
+            <h3>{pain.h}</h3>
+            <p>{pain.p}</p>
+            {i === 0 && <PainGhost />}
+            {i === 1 && <PainOffHours />}
+            {i === 2 && <PainChaos />}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

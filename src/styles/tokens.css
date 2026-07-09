@@ -1,0 +1,49 @@
+/* ============================================================
+   gechat — design tokens (portado do protótipo site.css)
+   Claro, cinematográfico, energético. Roxo vibrante + glow.
+   ============================================================ */
+
+:root {
+  --site-font: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --site-display: 'Poppins', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Tinta / neutros azulados (assinatura Gestonauta) */
+  --ink: #0A0066;
+  --ink-soft: #2A2A6E;
+  --muted: #5E6493;
+  --soft: #9AA0C4;
+  --line: #E9E6F7;
+  --line-2: #DCD8F0;
+
+  /* Fundos claros */
+  --bg: #FBFAFF;
+  --bg-2: #F3F0FF;
+  --surface: #FFFFFF;
+
+  /* Roxo Gestonauta */
+  --pri: #8B44FF;
+  --pri-strong: #7526E8;
+  --pri-deep: #4A1A9E;
+  --pri-light: #B98BFF;
+  --pri-soft: #F1E8FF;
+
+  /* Semânticas */
+  --green: #15B36A;
+  --wa: #1FA855;
+  --amber: #F59E0B;
+  --red: #F53D5C;
+
+  /* Escuro cinematográfico */
+  --night: #0B0033;
+  --night-2: #150A4A;
+  --night-line: rgba(255, 255, 255, .12);
+
+  --glow: 0 24px 70px -24px rgba(139, 68, 255, .55);
+  --glow-strong: 0 30px 90px -20px rgba(139, 68, 255, .7);
+  --shadow-card: 0 18px 50px -24px rgba(10, 0, 102, .28);
+  --shadow-soft: 0 2px 0 0 rgba(10, 0, 102, .05);
+
+  --r-lg: 24px;
+  --r-md: 16px;
+  --r-sm: 12px;
+}

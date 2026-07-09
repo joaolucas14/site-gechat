@@ -1,0 +1,21 @@
+---
+/* Logo oficial do gechat (horizontal ou só o símbolo). */
+import logoLight from '../../assets/logo-h-light.svg';
+import symbolLight from '../../assets/symbol-light.svg';
+import symbolDark from '../../assets/symbol-dark.svg';
+
+interface Props {
+  /** usa só o símbolo (quadrado) em vez do logo horizontal */
+  symbol?: boolean;
+  /** variante para fundos escuros */
+  dark?: boolean;
+  class?: string;
+}
+
+const { symbol = false, dark = false, class: className } = Astro.props;
+
+// TODO: o handoff não trouxe o logo-h-dark.svg — solicitar; por ora o light cobre.
+const src = symbol ? (dark ? symbolDark : symbolLight) : logoLight;
+---
+
+<img src={src.src} alt="gechat" class={className} draggable="false" />

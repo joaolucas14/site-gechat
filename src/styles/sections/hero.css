@@ -1,0 +1,89 @@
+/* ============================================================
+   HERO (primeira dobra): copy, palco dos mocks, fundo de linhas
+   e cartões flutuantes. Portado do protótipo.
+   ============================================================ */
+
+.hero { min-height: 100svh; display: flex; align-items: center; padding: 84px 0 36px; position: relative; overflow: hidden; }
+.hero-grid {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 36px; align-items: center;
+}
+.hero-copy { max-width: 600px; }
+.hero h1 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.04; margin: 0; }
+.hero h1 .grad-ink { display: inline; }
+.hero .lede { margin: 16px 0 0; max-width: 480px; font-size: clamp(15px, 1.6vw, 17px); }
+.hero-actions { display: flex; align-items: center; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+.hero-stage { position: relative; min-height: 340px; }
+
+/* alternância desktop/mobile do palco (o protótipo troca via matchMedia) */
+.hs-mobile { display: none; }
+
+/* ---------- fundo do hero ---------- */
+.hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.hero-bg .hb { position: absolute; }
+.bg-lines .hb-soft { top: -20%; right: -10%; width: 60%; height: 80%; border-radius: 50%; background: radial-gradient(circle, rgba(139, 68, 255, .16), transparent 68%); filter: blur(20px); }
+
+/* tela do hero (sem moldura de monitor) */
+.hero-screen { border-radius: 18px; box-shadow: 0 34px 80px -34px rgba(10, 0, 102, .45), var(--shadow-card); }
+.hero-screen .mock-glow { opacity: .6; }
+
+/* ---------- cartões flutuantes ---------- */
+.float-card {
+  position: absolute; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 16px; box-shadow: var(--shadow-card); padding: 12px 14px; z-index: 4;
+  display: flex; align-items: center; gap: 11px;
+}
+.float-card .fc-ic { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; flex: 0 0 auto; }
+.float-card .fc-ic .ic { width: 19px; height: 19px; }
+.float-card .fc-t { font-size: 12.5px; font-weight: 800; color: var(--ink); line-height: 1.1; }
+.float-card .fc-s { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ---------- hero mock MOBILE: tela de conversa como no celular ---------- */
+.hmob-wrap { position: relative; width: 100%; max-width: 336px; margin: 0 auto; }
+.hmob-glow { position: absolute; inset: -8% -6% -6%; border-radius: 44px; background: radial-gradient(60% 52% at 50% 38%, rgba(139, 68, 255, .42), transparent 72%); filter: blur(42px); z-index: 0; pointer-events: none; }
+.hmob {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  border-radius: 26px; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--line);
+  box-shadow: 0 30px 70px -30px rgba(10, 0, 102, .5), var(--shadow-card);
+}
+.hmob-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--surface); border-bottom: 1px solid var(--line); }
+.hmob-back { color: var(--soft); display: grid; place-items: center; flex: 0 0 auto; }
+.hmob-back .ic { width: 18px; height: 18px; transform: rotate(180deg); }
+.hmob-id { min-width: 0; line-height: 1.25; }
+.hmob-id b { display: block; font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+.hmob-id em { display: inline-flex; align-items: center; gap: 5px; font-style: normal; font-size: 11.5px; font-weight: 600; color: var(--muted); }
+.hmob-id em .ic { width: 13px; height: 13px; flex: 0 0 auto; }
+.hmob-thread {
+  position: relative; padding: 16px 13px; min-height: 296px;
+  display: flex; flex-direction: column; gap: 7px;
+  background: #ece4da;
+  background-image: radial-gradient(rgba(74, 26, 158, .05) 1.1px, transparent 1.1px); background-size: 17px 17px;
+}
+.hmob-thread .cmb { max-width: 82%; font-size: 12.5px; }
+.hmob-composer { display: flex; align-items: center; gap: 9px; padding: 10px 12px; background: var(--surface); border-top: 1px solid var(--line); }
+.hmob-inp { flex: 1 1 auto; height: 36px; display: flex; align-items: center; padding: 0 14px; border-radius: 999px; background: var(--bg-2); border: 1px solid var(--line); color: var(--soft); font-size: 12.5px; }
+.hmob-send { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--pri); color: #fff; box-shadow: 0 8px 18px -8px var(--pri); }
+.hmob-send .ic { width: 17px; height: 17px; }
+
+/* ---------- responsivo ---------- */
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+  .hero-stage { min-height: 440px; margin-top: 10px; }
+}
+@media (max-width: 620px) {
+  /* hero: sem trava de altura, empilhado e compacto */
+  .hero { min-height: auto; padding: 116px 0 48px; }
+  .hero-stage { min-height: 0; margin-top: 6px; }
+  .hero-actions { margin-top: 20px; }
+  .float-card { display: none; }
+
+  /* troca o palco: entra a tela de celular */
+  .hs-desktop { display: none; }
+  .hs-mobile { display: block; }
+
+  /* CTAs grandes viram largura total → alvos de toque confortáveis */
+  .hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
+  .hero-actions .btn { width: 100%; }
+}

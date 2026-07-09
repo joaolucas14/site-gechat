@@ -1,0 +1,19 @@
+---
+/* Cabeçalho padrão de seção: eyebrow + título + lede (com reveal). */
+interface Props {
+  eyebrow?: string;
+  center?: boolean;
+  class?: string;
+}
+
+const { eyebrow, center = false, class: className } = Astro.props;
+const cls = ['sec-head', center && 'center', 'reveal', className].filter(Boolean).join(' ');
+---
+
+<div class={cls}>
+  {eyebrow && <span class={center ? 'eyebrow center' : 'eyebrow'}>{eyebrow}</span>}
+  <h2 class="h-display"><slot name="title" /></h2>
+  {Astro.slots.has('lede') && (
+    <p class="lede"><slot name="lede" /></p>
+  )}
+</div>

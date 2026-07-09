@@ -1,0 +1,20 @@
+---
+/* Cena 2 da dor: cliente chama fora do horário e ninguém responde.
+   Mesmo ritmo das outras cenas (1300ms + pausa 2400ms). */
+import Icon from '../ui/Icon.astro';
+---
+
+<div class="pain-mock po" data-step-mock data-steps="4" data-interval="1300" data-hold="2400" aria-hidden="true">
+  <div class="pain-scene">
+    <div class="po-time"><Icon name="moon" /> 22:47 · sábado</div>
+    <div class="po-msg beat" data-step-in="1">Oi, ainda dá pra comprar?</div>
+    <div class="po-msg beat" data-step-in="2">Alô? Tem alguém aí?</div>
+    <div class="pain-verdict-line beat" data-step-in="3">
+      <Icon name="hourglass" /> Sem resposta → foi pro concorrente
+    </div>
+  </div>
+</div>
+
+<script>
+  import '../../scripts/step-mock';
+</script>

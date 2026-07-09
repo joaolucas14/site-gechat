@@ -1,0 +1,132 @@
+/* ============================================================
+   Base global: reset, tipografia, layout, botões, decoração
+   e animações de scroll. Portado 1:1 do protótipo site.css.
+   Estilos específicos de seção vivem junto do componente.
+   ============================================================ */
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--site-font);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+.site { position: relative; overflow: clip; }
+.site img { display: block; max-width: 100%; }
+
+/* ícone base (astro-icon herda cor/traço; contexto define o tamanho) */
+.ic { width: 1em; height: 1em; }
+
+/* ---------- tipografia base ---------- */
+.h-display { font-family: var(--site-display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.0; margin: 0; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--pri-strong);
+}
+.eyebrow::before { content: ""; width: 22px; height: 2px; border-radius: 2px; background: currentColor; opacity: .7; }
+.eyebrow.center::before { display: none; }
+.lede { font-size: clamp(17px, 2vw, 20px); line-height: 1.5; color: var(--muted); font-weight: 500; }
+
+.grad-ink {
+  background: linear-gradient(120deg, var(--pri-deep) 0%, var(--pri) 48%, var(--pri-light) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ---------- layout ---------- */
+.wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+.wrap-wide { max-width: 1320px; }
+section { position: relative; }
+
+/* ---------- seção (cabeçalho comum) ---------- */
+.sec { padding: 110px 0; }
+.sec-head { max-width: 720px; }
+.sec-head.center { margin: 0 auto; text-align: center; }
+.sec-head h2 { font-size: clamp(32px, 4.4vw, 54px); margin: 16px 0 0; }
+.sec-head .lede { margin-top: 18px; }
+
+/* ---------- botões ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  font-family: inherit; font-size: 15px; font-weight: 700; letter-spacing: .005em;
+  border: 1px solid transparent; border-radius: 999px; cursor: pointer;
+  padding: 0 22px; height: 48px; text-decoration: none; white-space: nowrap;
+  transition: transform .14s ease, box-shadow .2s ease, background .2s ease, color .2s, border-color .2s;
+}
+.btn .ic { width: 1.15em; height: 1.15em; }
+.btn-pri {
+  background: var(--pri); color: #fff;
+  box-shadow: 0 14px 30px -12px rgba(139, 68, 255, .75);
+}
+.btn-pri:hover { background: var(--pri-strong); transform: translateY(-2px); box-shadow: 0 20px 40px -12px rgba(139, 68, 255, .85); }
+.btn-pri:active { transform: translateY(0); }
+.btn-ghost { background: #F6F2FF; color: var(--ink); border-color: var(--line-2); }
+.btn-ghost:hover { border-color: var(--pri); color: var(--pri-strong); background: var(--pri-soft); }
+.btn-white { background: #fff; color: var(--pri-deep); box-shadow: 0 14px 34px -14px rgba(0, 0, 0, .5); }
+.btn-white:hover { transform: translateY(-2px); }
+.btn-wa { background: var(--wa); color: #fff; box-shadow: 0 14px 30px -14px rgba(31, 168, 85, .7); }
+.btn-wa:hover { background: #178c45; transform: translateY(-2px); }
+.btn-sm { height: 42px; padding: 0 17px; font-size: 14px; }
+.btn-lg { height: 56px; padding: 0 30px; font-size: 16.5px; }
+
+.btn-link { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; color: var(--pri-strong); text-decoration: none; font-size: 15px; }
+.btn-link .ic { width: 18px; height: 18px; transition: transform .2s; }
+.btn-link:hover .ic { transform: translateX(4px); }
+
+/* pílula de microcopy sob CTA */
+.cta-note { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: var(--muted); font-weight: 500; }
+.cta-note .ic { width: 16px; height: 16px; color: var(--green); }
+
+/* ---------- decoração / fundo ---------- */
+.orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(8px); z-index: 0; }
+.dot-grid {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(139, 68, 255, .22) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+}
+.dot-grid.faded {
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 75%);
+}
+
+/* ---------- avatar ---------- */
+.avi { border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: #fff; flex: 0 0 auto; }
+
+/* ============================================================
+   Animações de scroll
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); will-change: opacity, transform; }
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: .08s; } .reveal.d2 { transition-delay: .16s; } .reveal.d3 { transition-delay: .24s; } .reveal.d4 { transition-delay: .32s; } .reveal.d5 { transition-delay: .40s; }
+.reveal.from-l { transform: translateX(-36px); } .reveal.from-l.in { transform: none; }
+.reveal.from-r { transform: translateX(36px); } .reveal.from-r.in { transform: none; }
+.reveal.scale-in { transform: scale(.94); } .reveal.scale-in.in { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .typing i { animation: none !important; }
+}
+
+/* float decorativo */
+@keyframes floaty { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
+.floaty { animation: floaty 6s ease-in-out infinite; }
+.floaty.slow { animation-duration: 8s; }
+.floaty.delay { animation-delay: -3s; }
+@media (prefers-reduced-motion: reduce) { .floaty { animation: none; } }
+
+/* ---------- responsivo global ---------- */
+@media (max-width: 620px) {
+  .wrap { padding: 0 18px; }
+  /* espaçamento vertical enxuto e consistente por seção */
+  .sec { padding: 68px 0; }
+}
+@media (max-width: 480px) {
+  .wrap { padding: 0 16px; }
+}

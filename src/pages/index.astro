@@ -1,0 +1,25 @@
+---
+/* Página inicial: monta as seções em ordem (uma por componente).
+   Hero e Pilares dividem o wrapper .continuum, atravessado pelas
+   linhas fluidas de fundo (FlowLines). */
+import Base from '../layouts/Base.astro';
+import Header from '../components/sections/Header.astro';
+import FlowLines from '../components/sections/FlowLines.astro';
+import Hero from '../components/sections/Hero.astro';
+import Pillars from '../components/sections/Pillars.astro';
+import Pain from '../components/sections/Pain.astro';
+---
+
+<Base>
+  <Header />
+  <main>
+    <div class="continuum">
+      <FlowLines />
+      <Hero />
+      <Pillars />
+    </div>
+    <Pain />
+    <!-- Sprint 3+: Breath, Features, Bento, Usability, Pricing, Faq, FinalCta -->
+  </main>
+  <!-- Sprint 5: Footer -->
+</Base>

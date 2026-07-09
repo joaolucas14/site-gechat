@@ -1,0 +1,47 @@
+---
+/* Primeira dobra: headline, CTAs e o palco com o mock de chat ao vivo
+   (desktop: app + cartões flutuantes · mobile: tela de celular). */
+import Btn from '../ui/Btn.astro';
+import Icon from '../ui/Icon.astro';
+import HeroChat from '../mocks/HeroChat.astro';
+import HeroFloats from '../mocks/HeroFloats.astro';
+import HeroChatMobile from '../mocks/HeroChatMobile.astro';
+import { WA_LINK, SIGNUP_LINK } from '../../data/links';
+import '../../styles/sections/hero.css';
+---
+
+<section class="hero" id="topo">
+  <div class="hero-bg bg-lines" aria-hidden="true">
+    <span class="hb hb-soft"></span>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1 class="reveal h-display">
+        Atendimento no WhatsApp, <span class="grad-ink">organizado de verdade.</span>
+      </h1>
+      <p class="reveal d2 lede">
+        O Gechat reúne os WhatsApps da sua empresa numa central única, com filas por setor,
+        transferências e histórico organizado que nunca se perde.
+      </p>
+      <div class="reveal d3 hero-actions">
+        <Btn variant="pri" size="lg" href={SIGNUP_LINK}>
+          Começar teste grátis <Icon name="arrow_right" />
+        </Btn>
+        <Btn variant="ghost" size="lg" href={WA_LINK} target="_blank" rel="noopener">
+          <Icon name="whatsapp_real" /> Tirar dúvidas no WhatsApp
+        </Btn>
+      </div>
+    </div>
+    <div class="hero-stage" data-parallax="0.04" aria-hidden="true">
+      <div class="hs-desktop">
+        <div class="floaty slow">
+          <HeroChat />
+        </div>
+        <HeroFloats />
+      </div>
+      <div class="hs-mobile">
+        <HeroChatMobile />
+      </div>
+    </div>
+  </div>
+</section>
