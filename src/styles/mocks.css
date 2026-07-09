@@ -11,10 +11,10 @@
 .mock-glow { position: absolute; inset: -1px; border-radius: 21px; pointer-events: none; box-shadow: var(--glow); opacity: .5; }
 
 /* elementos de roteiro passo-a-passo: escondidos até o script ligar */
-[data-step][hidden] { display: none !important; }
+[data-step][hidden], [data-step-eq][hidden] { display: none !important; }
 
 /* chat mock — fiel ao sistema real */
-.cm { display: grid; grid-template-columns: 198px 1fr; min-height: 326px; }
+.cm { display: grid; grid-template-columns: 198px 1fr; height: 344px; }
 .cm-list { border-right: 1px solid var(--line); background: var(--surface); padding: 12px 9px 8px; overflow: hidden; }
 .cm-list-head { padding: 0 6px 9px; }
 .cm-list-head b { font-size: 15px; font-weight: 800; letter-spacing: -.02em; color: var(--ink); display: block; line-height: 1.1; }
@@ -48,7 +48,7 @@
 .cm-route-dep { font-weight: 600; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cm-conv-unread { flex: 0 0 auto; align-self: center; min-width: 16px; height: 16px; padding: 0 5px; border-radius: 999px; background: var(--pri); color: #fff; font-size: 9.5px; font-weight: 800; display: grid; place-items: center; }
 
-.cm-thread { background: #ece4da; position: relative; padding: 58px 13px 13px; display: flex; flex-direction: column; gap: 6px; background-image: radial-gradient(rgba(74, 26, 158, .05) 1.1px, transparent 1.1px); background-size: 17px 17px; }
+.cm-thread { background: #ece4da; position: relative; padding: 58px 13px 13px; display: flex; flex-direction: column; gap: 6px; overflow: hidden; background-image: radial-gradient(rgba(74, 26, 158, .05) 1.1px, transparent 1.1px); background-size: 17px 17px; }
 .cm-head { position: absolute; top: 11px; left: 11px; right: 11px; height: 46px; display: flex; align-items: center; gap: 9px; padding: 0 9px; background: var(--surface); border: 1px solid var(--line); border-radius: 13px; box-shadow: 0 7px 20px -12px rgba(10, 0, 102, .4); z-index: 3; }
 .cm-head .avi { width: 30px; height: 30px; font-size: 11px; }
 .cm-head-id { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
