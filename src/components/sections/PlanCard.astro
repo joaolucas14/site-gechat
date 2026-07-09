@@ -1,0 +1,65 @@
+---
+/* Card de plano com calculadora embutida. O HTML sai do build já com o
+   estado inicial (anual, sem extras) — bom pra SEO; o scripts/pricing.ts
+   só atualiza os números quando o visitante interage. */
+import Btn from '../ui/Btn.astro';
+import Icon from '../ui/Icon.astro';
+import { type Plan, ADD_USER, ADD_NUMBER, brl } from '../../data/plans';
+import { SIGNUP_LINK } from '../../data/links';
+
+interface Props {
+  plan: Plan;
+}
+
+const { plan } = Astro.props;
+---
+
+<div
+  class={`reveal scale-in d${plan.popular ? 2 : 1} plan${plan.popular ? ' plan--pop' : ''}`}
+  data-plan={plan.id}
+  data-m={plan.m}
+  data-a={plan.a}
+  data-users={plan.users}
+  data-numbers={plan.numbers}
+>
+  {plan.popular && <span class="plan-flag">Mais escolhido</span>}
+  <div class="plan-head">
+    <h3 class="plan-name">{plan.name}</h3>
+  </div>
+  <div class="plan-price">
+    <span class="plan-cur">R$</span>
+    <span class="plan-amt">{brl(plan.a)}</span>
+    <span class="plan-per">x12</span>
+  </div>
+  <div class="plan-bill">
+    <span data-bill-cycle>no plano anual</span>
+    <span class="plan-save">economize ~20%</span>
+  </div>
+  <ul class="plan-incl">
+    <li><Icon name="check" /> <span><strong data-plan-userline>{plan.users} usuários</strong></span></li>
+    <li><Icon name="check" /> <span><strong data-plan-numline>{plan.numbers} número{plan.numbers > 1 ? 's' : ''}</strong> de WhatsApp</span></li>
+    <li><Icon name="check" /> <span>Filas, setores, URA e métricas</span></li>
+  </ul>
+  <div class="plan-calc">
+    <span class="plan-calc-h">Personalize seu plano</span>
+    <div class="plan-adjrow">
+      <span class="plan-adjlab">Usuários a mais <b>· R$ {brl(ADD_USER)}</b></span>
+      <span class="plan-step" data-step-for="users">
+        <button type="button" aria-label="Remover usuários" disabled><Icon name="minus" /></button>
+        <span class="val">0</span>
+        <button type="button" aria-label="Adicionar usuários"><Icon name="plus" /></button>
+      </span>
+    </div>
+    <div class="plan-adjrow">
+      <span class="plan-adjlab">Números a mais <b>· R$ {brl(ADD_NUMBER)}</b></span>
+      <span class="plan-step" data-step-for="numbers">
+        <button type="button" aria-label="Remover números" disabled><Icon name="minus" /></button>
+        <span class="val">0</span>
+        <button type="button" aria-label="Adicionar números"><Icon name="plus" /></button>
+      </span>
+    </div>
+  </div>
+  <div class="plan-foot">
+    <Btn variant={plan.popular ? 'pri' : 'ghost'} href={SIGNUP_LINK}>Começar grátis</Btn>
+  </div>
+</div>

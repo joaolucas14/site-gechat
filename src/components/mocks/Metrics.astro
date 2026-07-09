@@ -1,0 +1,59 @@
+---
+/* Mock "painel de métricas": números contam de 0 até o alvo e as
+   barras sobem escalonadas quando o mock entra na viewport. */
+import MockWindow from '../ui/MockWindow.astro';
+import Icon from '../ui/Icon.astro';
+
+const bars = [40, 62, 48, 78, 90, 70, 84];
+---
+
+<MockWindow aria-hidden="true">
+  <div class="met" data-metrics>
+    <div class="met-card">
+      <div class="k">Tempo médio de fila</div>
+      <div class="v"><span data-count="2">2</span><small> min</small></div>
+      <div class="trend up"><Icon name="trending" />34% mais rápido</div>
+    </div>
+    <div class="met-card">
+      <div class="k">Duração do atendimento</div>
+      <div class="v"><span data-count="6">6</span><small> min</small></div>
+      <div class="trend up"><Icon name="check_circle" />dentro da meta</div>
+    </div>
+    <div class="met-bars">
+      {bars.map((h, i) => <span style={`--h:${h}%;--d:${(i * 0.06).toFixed(2)}s`}></span>)}
+    </div>
+  </div>
+</MockWindow>
+
+<script>
+  /* Conta 0→alvo (1400ms, ease-out cúbico — mesmo do protótipo) e
+     libera as barras (.is-on) quando o painel aparece. */
+  import { REDUCED, whenVisible } from '../../scripts/motion';
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-metrics]')) {
+    const counters = root.querySelectorAll<HTMLElement>('[data-count]');
+
+    if (REDUCED) {
+      root.classList.add('is-on'); // barras no estado final, números já são o alvo
+      continue;
+    }
+
+    counters.forEach((el) => (el.textContent = '0'));
+    whenVisible(root, () => {
+      root.classList.add('is-on');
+      counters.forEach((el) => {
+        const target = parseFloat(el.dataset.count || '0');
+        let start: number | undefined;
+        const DURATION = 1400;
+        const step = (t: number) => {
+          start ??= t;
+          const p = Math.min((t - start) / DURATION, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = String(Math.round(target * eased));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    });
+  }
+</script>

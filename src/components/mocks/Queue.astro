@@ -1,0 +1,37 @@
+---
+/* Mock "fila por setor": os clientes entram na fila um a um (950ms). */
+import MockWindow from '../ui/MockWindow.astro';
+import Avatar from '../ui/Avatar.astro';
+import Icon from '../ui/Icon.astro';
+import mulher1 from '../../assets/avatars/mulher-1.png';
+import mulher2 from '../../assets/avatars/mulher-2.png';
+import homem1 from '../../assets/avatars/homem-1.png';
+
+const rows = [
+  { n: 'Marina Alves', s: 'Comercial · WhatsApp', w: '1 min', img: mulher1 },
+  { n: 'Rodrigo Lima', s: 'Suporte · WhatsApp', w: '3 min', img: homem1 },
+  { n: 'Bruna Costa', s: 'Financeiro · WhatsApp', w: '4 min', img: mulher2 },
+];
+---
+
+<MockWindow data-step-mock data-steps="4" data-interval="950" aria-hidden="true">
+  <div class="qm">
+    {
+      rows.map((r, i) => (
+        <div class="qm-row" data-step-in={i + 1}>
+          <span class="pos">{i + 1}</span>
+          <Avatar name={r.n} img={r.img} size={36} />
+          <div>
+            <div class="nm">{r.n}</div>
+            <div class="sub">{r.s}</div>
+          </div>
+          <span class="wait"><Icon name="timer" />{r.w}</span>
+        </div>
+      ))
+    }
+  </div>
+</MockWindow>
+
+<script>
+  import '../../scripts/step-mock';
+</script>

@@ -1,0 +1,117 @@
+---
+/* Bloco de funcionalidades: intro + trilha de navegação (scrollspy,
+   progresso e dock no teto — ver scripts/feat-trail.ts) + as 4
+   features alternadas com seus mocks. */
+import SectionHead from '../ui/SectionHead.astro';
+import Logo from '../ui/Logo.astro';
+import Btn from '../ui/Btn.astro';
+import Icon from '../ui/Icon.astro';
+import FeatureRow from './FeatureRow.astro';
+import Organize from '../mocks/Organize.astro';
+import Queue from '../mocks/Queue.astro';
+import Schedule from '../mocks/Schedule.astro';
+import Metrics from '../mocks/Metrics.astro';
+import { SIGNUP_LINK } from '../../data/links';
+import '../../styles/sections/features.css';
+
+const index = [
+  { ic: 'history', t: 'Histórico', href: '#f-historico' },
+  { ic: 'hourglass', t: 'Filas', href: '#f-filas' },
+  { ic: 'calendar', t: 'Agendamentos', href: '#f-tempo' },
+  { ic: 'chart', t: 'Métricas', href: '#f-gestao' },
+];
+---
+
+<div class="features-block">
+  <section class="feature-intro" id="funcionalidades">
+    <div class="wrap">
+      <SectionHead center eyebrow="Veja funcionando">
+        <Fragment slot="title">Recursos pensados<br />para o seu dia a dia</Fragment>
+      </SectionHead>
+    </div>
+  </section>
+
+  <nav class="feat-trail" style="--prog:0%" aria-label="Recursos">
+    <a class="feat-trail-brand" href="#topo" aria-label="Início"><Logo /></a>
+    <div class="feat-trail-items">
+      {
+        index.map((it, i) => (
+          <a href={it.href} class={'feat-trail-node' + (i === 0 ? ' is-active' : '')}>
+            <Icon name={it.ic} /> <span class="feat-trail-label">{it.t}</span>
+          </a>
+        ))
+      }
+      <span class="feat-trail-prog"><i></i></span>
+    </div>
+    <div class="feat-trail-cta">
+      <Btn variant="pri" size="sm" href={SIGNUP_LINK}>Teste 7 dias grátis</Btn>
+    </div>
+  </nav>
+
+  <FeatureRow
+    id="f-historico"
+    bullets={[
+      'Quem atendeu cada conversa',
+      'Quanto durou e quanto o cliente esperou',
+      'Encontre qualquer atendimento em segundos',
+    ]}
+  >
+    <Fragment slot="title">Todo o histórico do cliente,<br />organizado por data</Fragment>
+    <Fragment slot="caption">
+      Chega de rolar um chat sem fim atrás do que foi dito.<br />
+      Cada atendimento fica catalogado do jeito certo.
+    </Fragment>
+    <Organize />
+  </FeatureRow>
+
+  <FeatureRow
+    id="f-filas"
+    rev
+    bullets={[
+      'Cada conversa entra na fila do setor responsável',
+      'Veja a posição na fila e o tempo de espera de cada um',
+      'Cada atendente vê só a fila do seu setor, sem se perder no que não é dele',
+    ]}
+  >
+    <Fragment slot="title">Clientes atendidos na ordem,<br />sem ninguém esquecido</Fragment>
+    <Fragment slot="caption">
+      Comercial, suporte, financeiro: a URA faz a triagem e cada cliente chega sozinho na fila do setor certo.
+    </Fragment>
+    <Queue />
+  </FeatureRow>
+
+  <FeatureRow
+    id="f-tempo"
+    bullets={[
+      'Mensagens enviadas na hora marcada',
+      'Programe lembretes com antecedência',
+      'Follow-up na hora certa, mesmo fora do expediente',
+    ]}
+  >
+    <Fragment slot="title">Mensagens agendadas,<br />retornos automáticos</Fragment>
+    <Fragment slot="caption">
+      Sem depender da memória de ninguém, o cliente recebe o retorno na hora que pediu e nenhuma oportunidade esfria pelo caminho.
+    </Fragment>
+    <Schedule />
+  </FeatureRow>
+
+  <FeatureRow
+    id="f-gestao"
+    rev
+    bullets={[
+      'Tempo médio de espera e de atendimento',
+      'Volume por setor, canal e atendente',
+      'Descubra os horários de pico do atendimento',
+    ]}
+  >
+    <Fragment slot="title">Sua operação em números,<br />sem achismo</Fragment>
+    <Fragment slot="caption">
+      Compare o desempenho entre setores e atendentes e veja na hora quem precisa de reforço e quem está dando conta.
+    </Fragment>
+    <Metrics />
+  </FeatureRow>
+</div>
+
+<script>
+  import '../../scripts/feat-trail';
+</script>

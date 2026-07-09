@@ -1,0 +1,40 @@
+---
+/* Uma linha de feature: texto de um lado, mock do outro (alterna com
+   `rev`). Slots: title (h3), caption (legenda sob o mock) e default (mock). */
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  id: string;
+  /** inverte os lados (mock à esquerda) */
+  rev?: boolean;
+  tag?: string;
+  tagIc?: string;
+  bullets?: string[];
+}
+
+const { id, rev = false, tag, tagIc, bullets } = Astro.props;
+---
+
+<section id={id} class={'feature' + (rev ? ' rev' : '')}>
+  <div class="wrap feature-grid">
+    <div class={`reveal ${rev ? 'from-r' : 'from-l'} feature-copy`}>
+      {tag && tagIc && (
+        <span class="feature-tag"><Icon name={tagIc} /> {tag}</span>
+      )}
+      <h3><slot name="title" /></h3>
+      {bullets && (
+        <ul class="feature-bullets">
+          {bullets.map((b) => (
+            <li><Icon name="check_circle" /> {b}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+    <div class={`reveal ${rev ? 'from-l' : 'from-r'} d1 feature-stage`}>
+      <div data-parallax={rev ? '-0.03' : '0.03'}><slot /></div>
+      {Astro.slots.has('caption') && (
+        <p class="feature-caption"><slot name="caption" /></p>
+      )}
+    </div>
+  </div>
+</section>

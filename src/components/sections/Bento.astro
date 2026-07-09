@@ -1,0 +1,37 @@
+---
+/* Seção "E ainda tem mais": grid de 9 recursos (conteúdo em data/bento.ts). */
+import SectionHead from '../ui/SectionHead.astro';
+import Icon from '../ui/Icon.astro';
+import { BENTO } from '../../data/bento';
+import '../../styles/sections/bento.css';
+---
+
+<section class="sec bento-sec">
+  <div class="sec-curve" aria-hidden="true">
+    <svg viewBox="0 0 1200 90" preserveAspectRatio="none">
+      <path d="M-20 60 C 180 20, 360 100, 600 60 S 1020 20, 1220 60"></path>
+    </svg>
+  </div>
+  <div class="wrap">
+    <SectionHead center eyebrow="E ainda tem mais">
+      <Fragment slot="title">Automação, padronização e organização<br />trabalhando juntas para você</Fragment>
+      <Fragment slot="lede">Confira os detalhes do atendimento profissional que fazem a sua equipe render.</Fragment>
+    </SectionHead>
+    <div class="bento">
+      {
+        BENTO.map((item, i) => (
+          <div class={`reveal d${(i % 3) + 1} bento-card`}>
+            <span class="b-ic"><Icon name={item.ic} /></span>
+            <h4>{item.h}</h4>
+            <p>{item.p}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="sec-curve sec-curve--bottom" aria-hidden="true">
+    <svg viewBox="0 0 1200 90" preserveAspectRatio="none">
+      <path d="M-20 60 C 180 20, 360 100, 600 60 S 1020 20, 1220 60"></path>
+    </svg>
+  </div>
+</section>

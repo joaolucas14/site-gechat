@@ -1,0 +1,27 @@
+---
+/* Seção de planos: toggle mensal/anual + 2 cards com calculadora.
+   Preços e limites vivem em data/plans.ts. */
+import PlanCard from './PlanCard.astro';
+import { PLANS } from '../../data/plans';
+import '../../styles/sections/pricing.css';
+---
+
+<section class="pricing" id="planos">
+  <div class="wrap">
+    <div class="reveal bill-wrap">
+      <div class="bill-toggle" role="group" aria-label="Ciclo de cobrança" data-bill-toggle>
+        <button type="button" data-bill="monthly">Mensal</button>
+        <button type="button" class="is-on" data-bill="annual">
+          Anual <span class="bill-badge">-20%</span>
+        </button>
+      </div>
+    </div>
+    <div class="plan-grid">
+      {PLANS.map((plan) => <PlanCard plan={plan} />)}
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/pricing';
+</script>

@@ -1,0 +1,182 @@
+---
+/* Seção "Respira" — transição dor→solução: a onda do amanhecer encerra
+   a noite, a tela inteira do sistema aparece com a promessa no painel
+   vazio, e uma chuva de estrelas cai por baixo do mock.
+   As 64 estrelas usam PRNG com seed fixa (mesma do protótipo) e são
+   geradas AQUI, no build — nada é sorteado no navegador. */
+import Logo from '../ui/Logo.astro';
+import Avatar from '../ui/Avatar.astro';
+import Icon from '../ui/Icon.astro';
+import lucas from '../../assets/avatars/lucas-mendes.png';
+import mulher1 from '../../assets/avatars/mulher-1.png';
+import mulher2 from '../../assets/avatars/mulher-2.png';
+import mulher3 from '../../assets/avatars/mulher-3.png';
+import homem1 from '../../assets/avatars/homem-1.png';
+import homem2 from '../../assets/avatars/homem-2.png';
+import '../../styles/sections/breath.css';
+
+const nav = [
+  { ic: 'grid', t: 'Painel', on: false },
+  { ic: 'message', t: 'Atendimento', on: true },
+  { ic: 'calendar_days', t: 'Agendamentos', on: false },
+  { ic: 'contact', t: 'Contatos', on: false },
+  { ic: 'settings', t: 'Configurações', on: false },
+];
+
+const convs = [
+  { n: 'Marina Alves', img: mulher1, pv: 'Oi! Vocês têm o kit em estoque?', t: '14:02', ch: 'Comercial', cc: '#8B44FF', dep: 'Vendas' },
+  { n: 'Rodrigo Lima', img: homem1, pv: 'Pode ser amanhã às 14h?', t: '13:48', ch: 'Suporte', cc: '#15B36A', dep: 'Suporte' },
+  { n: 'Bruna Costa', img: mulher2, pv: 'Obrigada pelo atendimento! 💜', t: '13:11', ch: 'Loja Centro', cc: '#F59E0B', dep: 'Financeiro' },
+  { n: 'Diego Martins', img: homem2, pv: 'Consigo a segunda via do boleto?', t: '12:50', ch: 'Comercial', cc: '#8B44FF', dep: 'Financeiro' },
+  { n: 'Letícia Souza', img: mulher3, pv: 'Show, fechado então!', t: '12:34', ch: 'Suporte', cc: '#15B36A', dep: 'Suporte' },
+];
+
+/* chuva de estrelas: densas junto do mock, rareando ao descer */
+let seed = 20240626;
+const rnd = () => {
+  seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+  return seed / 0x7fffffff;
+};
+const stars = Array.from({ length: 64 }, () => {
+  const y = Math.pow(rnd(), 1.5) * 96; // viés p/ o topo (junto do mock)
+  const x = rnd() * 100;
+  const sz = 2 + rnd() * 3.4;
+  const base = (0.3 + rnd() * 0.6) * (1 - y / 130); // some ao descer
+  return {
+    x, y, sz,
+    op: Math.max(0, base),
+    dia: rnd() > 0.5,
+    light: rnd() > 0.55, // mais claras: leem melhor sobre o glow
+    dur: (3.6 + rnd() * 4.4).toFixed(2),
+    delay: (-rnd() * 7).toFixed(2),
+  };
+});
+---
+
+<section class="breath">
+  <!-- onda de amanhecer: a noite recua e o dia "nasce" com luz roxa na crista -->
+  <div class="dawn-wave" aria-hidden="true">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="dawnFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0B0033"></stop>
+          <stop offset="0.9" stop-color="#0B0033"></stop>
+          <stop offset="1" stop-color="#1C0A52"></stop>
+        </linearGradient>
+        <filter id="dawnGlow" filterUnits="userSpaceOnUse" x="-220" y="-360" width="1640" height="720">
+          <feGaussianBlur stdDeviation="30"></feGaussianBlur>
+        </filter>
+        <filter id="dawnGlowTight" filterUnits="userSpaceOnUse" x="-220" y="-200" width="1640" height="400">
+          <feGaussianBlur stdDeviation="4"></feGaussianBlur>
+        </filter>
+      </defs>
+      <g class="dw-move">
+        <animateTransform
+          attributeName="transform"
+          attributeType="XML"
+          type="translate"
+          values="0 0; -64 13; 0 0"
+          keyTimes="0; 0.5; 1"
+          calcMode="spline"
+          keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"
+          dur="13s"
+          repeatCount="indefinite"></animateTransform>
+        <path class="dw-fill" d="M-120 64 C 200 22, 380 104, 600 64 S 1020 22, 1320 64 L 1320 -60 L -120 -60 Z"></path>
+        <path class="dw-glow" d="M-120 64 C 200 22, 380 104, 600 64 S 1020 22, 1320 64" filter="url(#dawnGlow)"></path>
+        <path class="dw-glow2" d="M-120 64 C 200 22, 380 104, 600 64 S 1020 22, 1320 64" filter="url(#dawnGlowTight)"></path>
+        <path class="dw-line" d="M-120 64 C 200 22, 380 104, 600 64 S 1020 22, 1320 64"></path>
+      </g>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <h2 class="reveal breath-head">
+      Gestão de atendimentos<br />
+      <span class="grad-ink">como você nunca viu</span>
+    </h2>
+
+    <div class="reveal from-b d1 breath-stage">
+      <span class="breath-glow" aria-hidden="true"></span>
+      <div class="mock bscreen">
+        <div class="mock-glow"></div>
+
+        <!-- nav rail (recolhida) -->
+        <aside class="bs-rail" aria-hidden="true">
+          <Logo symbol class="bs-rail-logo" />
+          <nav class="bs-nav">
+            {nav.map((it) => (
+              <span class={'bs-nav-item' + (it.on ? ' on' : '')} title={it.t}>
+                <Icon name={it.ic} />
+              </span>
+            ))}
+          </nav>
+          <span class="bs-rail-acc"><Avatar name="Lucas Mendes" img={lucas} size={32} /></span>
+        </aside>
+
+        <!-- lista de conversas -->
+        <div class="bs-list" aria-hidden="true">
+          <div class="bs-list-top">
+            <div class="cm-list-head" style="padding:0">
+              <b>Atendimento</b>
+              <em>Com você · 5 conversas</em>
+            </div>
+            <span class="bs-search"><Icon name="search" /></span>
+          </div>
+          <div class="cm-tabs">
+            <span class="cm-tab">Bot <span class="ct-count">3</span></span>
+            <span class="cm-tab">Fila <span class="ct-count">5</span></span>
+            <span class="cm-tab on">Meus <span class="ct-count">5</span></span>
+            <span class="cm-tab">Outros <span class="ct-count">7</span></span>
+          </div>
+          <div class="bs-convs">
+            {convs.map((c) => (
+              <div class="cm-conv">
+                <div class="cm-conv-av"><Avatar name={c.n} img={c.img} size={32} /></div>
+                <div class="cm-conv-body">
+                  <div class="cm-conv-r1">
+                    <span class="cm-conv-nm">{c.n}</span>
+                    <span class="cm-conv-time">{c.t}</span>
+                  </div>
+                  <div class="cm-conv-pv">{c.pv}</div>
+                  <div class="cm-conv-meta">
+                    <Icon name="whatsapp_real" class="cm-route-ic" style={`color:${c.cc}`} />
+                    <span class="cm-route-ch">{c.ch}</span>
+                    <span class="cm-route-sep"></span>
+                    <span class="cm-route-dep">{c.dep}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- painel vazio — a promessa mora aqui -->
+        <div class="bs-pane">
+          <div class="bs-empty">
+            <span class="bs-empty-mark">
+              <span class="bs-ring r1"></span>
+              <span class="bs-ring r2"></span>
+              <Logo symbol dark class="bs-empty-sym" />
+            </span>
+            <span class="eyebrow center">Existe um jeito melhor</span>
+            <p class="bs-empty-line">
+              Imagine cada conversa <span class="grad-ink">no lugar certo</span>, com a pessoa certa,
+              sem nada se perdendo no caminho.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="breath-fall" aria-hidden="true">
+      {stars.map((p) => (
+        <span
+          class="tstar-wrap"
+          style={`left:${p.x}%;top:${p.y}%;opacity:${p.op};--td:${p.dur}s;--tdl:${p.delay}s`}
+        >
+          <i class={'tstar' + (p.dia ? ' dia' : '') + (p.light ? ' lt' : '')} style={`width:${p.sz}px;height:${p.sz}px`}></i>
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

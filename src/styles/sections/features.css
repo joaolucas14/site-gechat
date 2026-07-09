@@ -1,0 +1,115 @@
+/* ============================================================
+   FEATURE rows (alternadas, mock + texto) + trilha de progresso
+   que gruda no teto no desktop. Portado do protótipo.
+   ============================================================ */
+
+.feature { padding: 96px 0; position: relative; scroll-margin-top: 88px; }
+#funcionalidades, #planos { scroll-margin-top: 88px; }
+
+/* abertura da seção de benefícios + trilha de progresso */
+.feature-intro { position: relative; z-index: 3; padding: 0 0 8px; margin-top: -84px; }
+.feature-intro .wrap { position: relative; z-index: 1; }
+.features-block { position: relative; }
+
+.feat-trail {
+  position: sticky; top: 78px; z-index: 40;
+  width: max-content; max-width: calc(100% - 24px);
+  margin: 28px auto 4px; padding: 7px 9px 12px;
+  display: flex; align-items: center; gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--line); border-radius: 22px;
+  box-shadow: var(--shadow-card);
+  transition: top .42s cubic-bezier(.4, 0, .2, 1), box-shadow .3s ease;
+}
+.feat-trail.is-docked {
+  top: 14px;
+  z-index: 90;
+}
+
+/* logo (ponta esquerda) e CTA (ponta direita) que "descem" do header
+   e passam a viajar com a trilha quando ela doca */
+.feat-trail-brand, .feat-trail-cta {
+  max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; pointer-events: none;
+  transform: translateY(-24px); margin: 0; padding: 0;
+  transition: max-width .45s cubic-bezier(.4, 0, .2, 1), opacity .3s ease,
+    transform .45s cubic-bezier(.4, 0, .2, 1), margin .45s cubic-bezier(.4, 0, .2, 1), padding .45s cubic-bezier(.4, 0, .2, 1);
+}
+.feat-trail-brand { display: inline-flex; align-items: center; flex: 0 0 auto; }
+.feat-trail-brand img { height: 23px; width: auto; display: block; }
+.feat-trail-cta { display: inline-flex; align-items: center; flex: 0 0 auto; }
+.feat-trail-cta .btn { box-shadow: none; }
+.feat-trail.is-docked .feat-trail-brand { max-width: 132px; opacity: 1; transform: translateY(2.5px); margin-right: 8px; padding-left: 6px; pointer-events: auto; }
+.feat-trail.is-docked .feat-trail-cta { max-width: 220px; opacity: 1; transform: translateY(2.5px); margin-left: 6px; pointer-events: auto; }
+
+.feat-trail-items { position: relative; display: flex; align-items: center; gap: 2px; }
+.feat-trail-node {
+  position: relative; display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 999px;
+  font-size: 14px; font-weight: 650; letter-spacing: -.01em;
+  color: var(--muted); text-decoration: none; white-space: nowrap;
+  transition: color .25s ease, background .25s ease;
+}
+.feat-trail-node .ic { width: 16px; height: 16px; color: var(--soft); transition: color .25s ease, transform .25s ease; }
+.feat-trail-node:hover { color: var(--pri-strong); }
+.feat-trail-node:hover .ic { color: var(--pri); }
+.feat-trail-node.is-done { color: var(--ink-soft); }
+.feat-trail-node.is-done .ic { color: var(--pri); }
+/* nó ativo "aceso" pela luz da marca (glow roxo) */
+.feat-trail-node.is-active {
+  color: var(--pri-strong); background: var(--pri-soft);
+  box-shadow: 0 0 0 1px rgba(139, 68, 255, .14), 0 6px 18px -5px rgba(139, 68, 255, .6);
+}
+.feat-trail-node.is-active .ic { color: var(--pri); transform: scale(1.08); filter: drop-shadow(0 0 4px rgba(139, 68, 255, .55)); }
+
+/* barra de progresso = linha de luz limpa */
+.feat-trail-prog {
+  position: absolute; left: 6px; right: 6px; bottom: -9px;
+  height: 3px; border-radius: 999px; background: var(--line); overflow: hidden;
+}
+.feat-trail-prog > i {
+  display: block; height: 100%; width: var(--prog, 0%);
+  background: linear-gradient(90deg, var(--pri-light), var(--pri-strong));
+  border-radius: inherit; transition: width .4s cubic-bezier(.4, 0, .2, 1);
+}
+
+.feature + .feature { border-top: 1px solid var(--line); }
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.feature.rev .feature-grid { direction: rtl; }
+.feature.rev .feature-grid > * { direction: ltr; }
+.feature-copy { max-width: 480px; }
+.feature-copy h3 { font-family: var(--site-display); font-weight: 800; font-size: clamp(24px, 2.6vw, 33px); letter-spacing: -.03em; line-height: 1.1; margin: 16px 0 0; }
+.feature-copy .lede { margin-top: 16px; font-size: 17px; }
+.feature-bullets { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
+.feature-bullets li { display: flex; gap: 11px; align-items: flex-start; font-size: 15px; font-weight: 500; color: var(--ink-soft); line-height: 1.4; }
+.feature-bullets .ic { width: 21px; height: 21px; color: var(--pri); flex: 0 0 auto; margin-top: 1px; }
+.feature-tag {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 13px; border-radius: 999px;
+  background: var(--pri-soft); color: var(--pri-strong); font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+}
+.feature-tag .ic { width: 15px; height: 15px; }
+.feature-stage { position: relative; }
+.feature-caption {
+  position: absolute; left: 0; right: 0; top: 100%;
+  margin: 18px auto 0; max-width: 420px; text-align: center;
+  font-size: 14px; font-weight: 500; line-height: 1.55; color: var(--muted);
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 980px) {
+  .feature-grid { grid-template-columns: 1fr; gap: 36px; }
+  .feature-caption { position: static; top: auto; }
+  .feature.rev .feature-grid { direction: ltr; }
+  .feat-trail-brand, .feat-trail-cta { display: none; }
+  /* no mobile a trilha não acompanha o scroll: rola com a página */
+  .feat-trail { position: static; top: auto; margin: 20px auto 4px; max-width: calc(100% - 16px); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .feat-trail::-webkit-scrollbar { display: none; }
+  .feat-trail-node { padding: 9px 13px; font-size: 13px; }
+}
+@media (max-width: 620px) {
+  .feature { padding: 68px 0; }
+  .feature-intro { margin-top: -56px; }
+}
+@media (max-width: 480px) {
+  .feat-trail-label { display: none; }
+  .feat-trail-node { padding: 9px; }
+}

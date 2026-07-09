@@ -1,0 +1,51 @@
+---
+/* Mock "histórico do cliente organizado por data": os resultados
+   aparecem (passo 1) e depois os chips de métrica (passo 2). */
+import MockWindow from '../ui/MockWindow.astro';
+import Avatar from '../ui/Avatar.astro';
+import Icon from '../ui/Icon.astro';
+import mulher1 from '../../assets/avatars/mulher-1.png';
+import mulher3 from '../../assets/avatars/mulher-3.png';
+import homem1 from '../../assets/avatars/homem-1.png';
+import homem4 from '../../assets/avatars/homem-4.png';
+
+const groups = [
+  { d: 'Hoje', at: 'Pedro · Suporte', img: homem4, wait: '1 min', dur: '8 min', res: 'Resolvido' },
+  { d: '28 mai', at: 'Ana · Vendas', img: mulher3, wait: '3 min', dur: '12 min', res: 'Venda fechada' },
+  { d: '15 abr', at: 'Bruno · Financeiro', img: homem1, wait: '2 min', dur: '5 min', res: '2ª via enviada' },
+];
+---
+
+<MockWindow data-step-mock data-steps="3" data-interval="950" data-hold="1600" aria-hidden="true">
+  <div class="hist">
+    <div class="hist-contact">
+      <Avatar name="Marina Alves" img={mulher1} size={40} />
+      <div>
+        <div class="nm">Marina Alves</div>
+        <div class="sub">3 atendimentos este mês</div>
+      </div>
+    </div>
+    {
+      groups.map((g) => (
+        <div>
+          <div class="hist-date"><b>{g.d}</b><span /></div>
+          <div class="hist-card">
+            <Avatar name={g.at} img={g.img} size={32} />
+            <div style="min-width:0">
+              <div class="nm">{g.at}</div>
+              <div class="res fx-up" data-step-in="1">{g.res}</div>
+            </div>
+            <div class="hist-metrics">
+              <span class="hist-chip fx-right" data-step-in="2"><Icon name="hourglass" /> {g.wait} espera</span>
+              <span class="hist-chip fx-right" data-step-in="2"><Icon name="clock" /> {g.dur}</span>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</MockWindow>
+
+<script>
+  import '../../scripts/step-mock';
+</script>

@@ -1,0 +1,26 @@
+---
+/* Mock "agendamento + nota interna": a mensagem e o agendamento
+   acendem em sequência (1300ms). */
+import MockWindow from '../ui/MockWindow.astro';
+import Icon from '../ui/Icon.astro';
+---
+
+<MockWindow data-step-mock data-steps="3" data-interval="1300" aria-hidden="true">
+  <div class="sm">
+    <div class="cmb note" style="margin-bottom:12px">
+      <b><Icon name="message_dashed" style="width:13px;height:13px" /> Nota interna · não vai pro cliente</b>
+      Cliente VIP. Confirmar desconto com o gerente.
+    </div>
+    <div class="sm-msg" data-step-in="1">
+      Bom dia, Marina! Passando pra lembrar do seu orçamento 💜
+    </div>
+    <div class="sm-foot" data-step-in="2">
+      <span class="sm-clock"><Icon name="calendar" /> Amanhã, 09:00</span>
+      <span class="sm-hint">envio automático</span>
+    </div>
+  </div>
+</MockWindow>
+
+<script>
+  import '../../scripts/step-mock';
+</script>
