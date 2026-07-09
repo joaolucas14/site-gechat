@@ -73,7 +73,7 @@
 }
 .bento-card:hover .b-ic { transform: scale(1.06) rotate(-3deg); }
 .bento-card .b-ic .ic { width: 25px; height: 25px; }
-.bento-card h4 { font-family: var(--site-display); font-weight: 700; font-size: 19px; letter-spacing: -.02em; margin: 0 0 7px; color: var(--ink); }
+.bento-card h3 { font-family: var(--site-display); font-weight: 700; font-size: 19px; letter-spacing: -.02em; margin: 0 0 7px; color: var(--ink); }
 .bento-card p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
 
 @media (max-width: 980px) {

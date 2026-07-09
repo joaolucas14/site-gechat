@@ -64,7 +64,7 @@
 .cmb { max-width: 80%; padding: 6px 9px 4px; border-radius: 9px; font-size: 11.5px; line-height: 1.36; color: #1B1245; box-shadow: 0 1px 1px rgba(11, 20, 26, .12), 0 1px 0 rgba(11, 20, 26, .03); }
 .cmb.in { align-self: flex-start; background: #ffffff; border-top-left-radius: 0; }
 .cmb.out { align-self: flex-end; background: #e7f6d8; border-top-right-radius: 0; }
-.cmb-meta { display: flex; align-items: center; justify-content: flex-end; gap: 3px; font-size: 9px; color: #7A8194; margin-top: 1px; }
+.cmb-meta { display: flex; align-items: center; justify-content: flex-end; gap: 3px; font-size: 9px; color: #5F6577; margin-top: 1px; }
 .cmb-meta .cmb-tk { width: 15px; height: 15px; color: #2F8AF5; margin-left: 1px; }
 .cmb.note { align-self: stretch; max-width: 100%; background: #FFF7E0; border: 1px solid rgba(245, 179, 1, .4); border-left: 3px solid #E0A000; border-radius: 8px; color: #7A5800; box-shadow: none; }
 .cmb.note b { display: flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; color: #B07A00; margin-bottom: 2px; }

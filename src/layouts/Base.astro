@@ -29,6 +29,7 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site);
 ---
 
 <!doctype html>
@@ -53,13 +54,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Gechat — o WhatsApp da sua empresa, organizado" />
     <meta name="twitter:card" content="summary_large_image" />
-    <!-- TODO: og:image 1200×630 quando a arte de compartilhamento existir -->
+    <meta name="twitter:image" content={ogImage} />
 
-    <!-- sem JS, todo o conteúdo fica visível (o reveal nunca esconde nada do crawler) -->
+    <slot name="head" />
+
+    <!-- sem JS, todo o conteúdo fica visível e o FAQ abre inteiro -->
     <noscript>
       <style>
         .reveal { opacity: 1 !important; transform: none !important; }
+        .faq-a { grid-template-rows: 1fr !important; }
       </style>
     </noscript>
   </head>

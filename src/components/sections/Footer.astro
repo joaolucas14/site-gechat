@@ -1,0 +1,46 @@
+---
+/* Footer: marca, links do produto e o selo "uma solução Gestonauta". */
+import { Image } from 'astro:assets';
+import Logo from '../ui/Logo.astro';
+import Icon from '../ui/Icon.astro';
+import gestonautaSymbol from '../../assets/gestonauta-symbol.png';
+import { WA_LINK, LOGIN_LINK, SIGNUP_LINK } from '../../data/links';
+import '../../styles/sections/final.css';
+---
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <Logo />
+        <p>
+          A central de atendimento que organiza o WhatsApp da sua empresa:
+          filas, setores, histórico e métricas num só lugar.
+        </p>
+        <a class="foot-wa" href={WA_LINK} target="_blank" rel="noopener">
+          <Icon name="whatsapp_real" /> (21) 4108-7746
+        </a>
+      </div>
+      <div class="foot-col">
+        <h3>Produto</h3>
+        <a href="#funcionalidades">Funcionalidades</a>
+        <a href="#planos">Preços</a>
+        <a href={SIGNUP_LINK}>Teste grátis</a>
+        <a href={LOGIN_LINK}>Entrar</a>
+      </div>
+      <a class="foot-seal" href="https://gestonauta.com.br" target="_blank" rel="noopener">
+        <span class="fs-eyebrow"><Icon name="check_circle" /> Chancela de qualidade</span>
+        <span class="fs-lock">
+          <Image class="fs-sym" src={gestonautaSymbol} alt="" width={104} height={104} draggable="false" />
+          <span class="fs-word"><em>Uma solução</em><b>gestonauta</b></span>
+        </span>
+        <span class="fs-sub">Feito por quem já cuida da gestão de centenas de empresas. Mesma equipe, mesmo padrão.</span>
+        <span class="fs-link">Conheça a Gestonauta <Icon name="arrow_right" /></span>
+      </a>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Gechat · uma solução Gestonauta</span>
+      <span>Feito com 💜 para times de atendimento</span>
+    </div>
+  </div>
+</footer>

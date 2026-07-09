@@ -13,9 +13,63 @@ import Features from '../components/sections/Features.astro';
 import Bento from '../components/sections/Bento.astro';
 import Usability from '../components/sections/Usability.astro';
 import Pricing from '../components/sections/Pricing.astro';
+import Faq from '../components/sections/Faq.astro';
+import FinalCta from '../components/sections/FinalCta.astro';
+import Footer from '../components/sections/Footer.astro';
+import { PLANS } from '../data/plans';
+import { FAQS } from '../data/faqs';
+import { WA_LINK } from '../data/links';
+
+/* Dados estruturados (JSON-LD): produto com preços, FAQ e a organização —
+   montados a partir dos mesmos arquivos de dados usados na página. */
+const stripHtml = (s: string) => s.replace(/<[^>]+>/g, '');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Gechat',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      url: Astro.site?.href,
+      description:
+        'Central de atendimento que organiza o WhatsApp da sua empresa: filas por setor, transferências, histórico completo e métricas.',
+      offers: PLANS.map((p) => ({
+        '@type': 'Offer',
+        name: `Plano ${p.name}`,
+        description: p.desc,
+        price: p.a.toFixed(2),
+        priceCurrency: 'BRL',
+        url: new URL('/#planos', Astro.site).href,
+      })),
+      publisher: { '@id': '#gestonauta' },
+    },
+    {
+      '@type': 'Organization',
+      '@id': '#gestonauta',
+      name: 'Gestonauta',
+      url: 'https://gestonauta.com.br',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        url: WA_LINK,
+        availableLanguage: 'Portuguese',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQS.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: stripHtml(f.a) },
+      })),
+    },
+  ],
+};
 ---
 
 <Base>
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
   <Header />
   <main>
     <div class="continuum">
@@ -29,7 +83,8 @@ import Pricing from '../components/sections/Pricing.astro';
     <Bento />
     <Usability />
     <Pricing />
-    <!-- Sprint 5: Faq, FinalCta -->
+    <Faq />
+    <FinalCta />
   </main>
-  <!-- Sprint 5: Footer -->
+  <Footer />
 </Base>

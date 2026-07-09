@@ -2,6 +2,5 @@
 
 export const WA_LINK = 'https://wa.me/552141087746';
 
-// TODO: trocar pelos URLs reais de login/cadastro quando o app estiver publicado
-export const LOGIN_LINK = '#';
-export const SIGNUP_LINK = '#';
+export const LOGIN_LINK = 'https://app.gechat.com.br/login';
+export const SIGNUP_LINK = 'https://app.gechat.com.br/register';

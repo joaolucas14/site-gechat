@@ -36,7 +36,7 @@ const index = [
     <div class="feat-trail-items">
       {
         index.map((it, i) => (
-          <a href={it.href} class={'feat-trail-node' + (i === 0 ? ' is-active' : '')}>
+          <a href={it.href} class={'feat-trail-node' + (i === 0 ? ' is-active' : '')} aria-label={it.t}>
             <Icon name={it.ic} /> <span class="feat-trail-label">{it.t}</span>
           </a>
         ))

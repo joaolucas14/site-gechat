@@ -1,0 +1,25 @@
+---
+/* CTA final: cartão escuro com glow e os dois botões de conversão. */
+import Btn from '../ui/Btn.astro';
+import Icon from '../ui/Icon.astro';
+import { WA_LINK, SIGNUP_LINK } from '../../data/links';
+import '../../styles/sections/final.css';
+---
+
+<section class="final">
+  <div class="wrap">
+    <div class="reveal scale-in final-card">
+      <span class="orb orb-f1"></span><span class="orb orb-f2"></span>
+      <h2>Pronto pra organizar<br />o WhatsApp da sua empresa?</h2>
+      <p>Crie a sua conta e comece a atender melhor hoje mesmo.<br />Leva poucos minutos.</p>
+      <div class="final-actions">
+        <Btn variant="white" size="lg" href={SIGNUP_LINK}>
+          Começar 7 dias grátis <Icon name="arrow_right" />
+        </Btn>
+        <Btn variant="wa" size="lg" href={WA_LINK} target="_blank" rel="noopener">
+          <Icon name="whatsapp_real" /> Tirar dúvidas no WhatsApp
+        </Btn>
+      </div>
+    </div>
+  </div>
+</section>
