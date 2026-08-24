@@ -60,6 +60,6 @@ const { plan } = Astro.props;
     </div>
   </div>
   <div class="plan-foot">
-    <Btn variant={plan.popular ? 'pri' : 'ghost'} href={SIGNUP_LINK}>Começar grátis</Btn>
+    <Btn variant={plan.popular ? 'pri' : 'ghost'} href={SIGNUP_LINK} onclick="fbq('track', 'Lead');">Começar grátis</Btn>
   </div>
 </div>

@@ -24,10 +24,10 @@ import '../../styles/sections/hero.css';
         transferências e histórico organizado que nunca se perde.
       </p>
       <div class="reveal-load d3 hero-actions">
-        <Btn variant="pri" size="lg" href={SIGNUP_LINK}>
+        <Btn variant="pri" size="lg" href={SIGNUP_LINK} onclick="fbq('track', 'Lead');">
           Começar teste grátis <Icon name="arrow_right" />
         </Btn>
-        <Btn variant="ghost" size="lg" href={WA_LINK} target="_blank" rel="noopener">
+        <Btn variant="ghost" size="lg" href={WA_LINK} target="_blank" rel="noopener" onclick="fbq('track', 'Contact');">
           <Icon name="whatsapp_real" /> Tirar dúvidas no WhatsApp
         </Btn>
       </div>

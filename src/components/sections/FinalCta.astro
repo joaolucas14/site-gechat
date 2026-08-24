@@ -13,10 +13,10 @@ import '../../styles/sections/final.css';
       <h2>Pronto pra organizar<br />o WhatsApp da sua empresa?</h2>
       <p>Crie a sua conta e comece a atender melhor hoje mesmo.<br />Leva poucos minutos.</p>
       <div class="final-actions">
-        <Btn variant="white" size="lg" href={SIGNUP_LINK}>
+        <Btn variant="white" size="lg" href={SIGNUP_LINK} onclick="fbq('track', 'Lead');">
           Começar 7 dias grátis <Icon name="arrow_right" />
         </Btn>
-        <Btn variant="wa" size="lg" href={WA_LINK} target="_blank" rel="noopener">
+        <Btn variant="wa" size="lg" href={WA_LINK} target="_blank" rel="noopener" onclick="fbq('track', 'Contact');">
           <Icon name="whatsapp_real" /> Tirar dúvidas no WhatsApp
         </Btn>
       </div>
