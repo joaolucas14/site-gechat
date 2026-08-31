@@ -1,0 +1,21 @@
+---
+/* Botão flutuante de WhatsApp: fixo no canto inferior direito de todas
+   as páginas (renderizado pelo Base.astro), com balão de convite no hover. */
+import Icon from './Icon.astro';
+import { WA_LINK } from '../../data/links';
+import '../../styles/sections/wafloat.css';
+---
+
+<a
+  class="wa-float"
+  href={WA_LINK}
+  target="_blank"
+  rel="noopener"
+  aria-label="Falar com a gente no WhatsApp"
+  onclick="fbq('track', 'Contact');"
+>
+  <span class="wa-float-tip">Fale com a gente</span>
+  <span class="wa-float-btn">
+    <Icon name="whatsapp_real" />
+  </span>
+</a>

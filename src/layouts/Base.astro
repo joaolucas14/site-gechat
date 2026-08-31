@@ -14,6 +14,8 @@ import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/mocks.css';
 
+import WaFloat from '../components/ui/WaFloat.astro';
+
 import jakarta400 from '@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-400-normal.woff2?url';
 import jakarta700 from '@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-700-normal.woff2?url';
 import poppins800 from '@fontsource/poppins/files/poppins-latin-800-normal.woff2?url';
@@ -104,6 +106,7 @@ const ogImage = new URL('/og.png', Astro.site);
     <div class="site">
       <slot />
     </div>
+    <WaFloat />
     <script>
       import '../scripts/reveal';
       import '../scripts/parallax';

@@ -1,0 +1,37 @@
+/* ============================================================
+   Botão flutuante de WhatsApp (canto inferior direito).
+   Renderizado pelo Base.astro em todas as páginas.
+   ============================================================ */
+
+.wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 90; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+.wa-float-btn { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(160deg, #2BC964, var(--wa)); color: #fff; box-shadow: 0 14px 38px -12px rgba(31, 168, 85, .65), 0 2px 0 0 rgba(10, 0, 102, .05); transition: transform .2s ease, box-shadow .2s ease; }
+.wa-float-btn .ic { width: 28px; height: 28px; }
+.wa-float:hover .wa-float-btn { transform: scale(1.08); box-shadow: 0 18px 46px -12px rgba(31, 168, 85, .8), 0 2px 0 0 rgba(10, 0, 102, .05); }
+.wa-float:focus-visible { outline: none; }
+.wa-float:focus-visible .wa-float-btn { outline: 3px solid var(--pri-light); outline-offset: 3px; }
+
+/* anel de pulso atrás do botão */
+.wa-float-btn::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--wa); opacity: 0; z-index: -1; animation: wa-pulse 2.6s ease-out infinite; }
+.wa-float-btn { position: relative; }
+
+@keyframes wa-pulse {
+  0% { transform: scale(1); opacity: .45; }
+  70%, 100% { transform: scale(1.65); opacity: 0; }
+}
+
+/* balão "Fale com a gente" — aparece no hover/focus (desktop) */
+.wa-float-tip { opacity: 0; transform: translateX(8px); pointer-events: none; background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 700; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); box-shadow: var(--shadow-card); white-space: nowrap; transition: opacity .2s ease, transform .2s ease; }
+.wa-float:hover .wa-float-tip,
+.wa-float:focus-visible .wa-float-tip { opacity: 1; transform: translateX(0); }
+
+@media (max-width: 700px) {
+  .wa-float { right: 16px; bottom: 16px; }
+  .wa-float-btn { width: 54px; height: 54px; }
+  .wa-float-tip { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-float-btn::before { animation: none; }
+  .wa-float-btn, .wa-float-tip { transition: none; }
+}

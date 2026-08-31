@@ -4,7 +4,7 @@
    altura) — o crawler lê tudo.
    ============================================================ */
 
-.faq { padding: 24px 0 44px; position: relative; }
+.faq { padding: 88px 0 44px; position: relative; }
 .faq .orb-fq { top: 8%; right: -140px; width: 520px; height: 520px; background: radial-gradient(circle at 50% 50%, rgba(139, 68, 255, .14), rgba(139, 68, 255, 0) 70%); }
 .faq .wrap { position: relative; z-index: 2; }
 .faq-grid { display: grid; grid-template-columns: 0.86fr 1.14fr; gap: 64px; align-items: start; }
@@ -44,7 +44,7 @@
 .faq-a strong { color: var(--ink); font-weight: 700; }
 
 @media (max-width: 900px) {
-  .faq { padding: 12px 0 40px; }
+  .faq { padding: 64px 0 40px; }
   .faq-grid { grid-template-columns: 1fr; gap: 32px; }
   .faq-aside { position: static; text-align: center; }
   .faq-aside .lede, .faq-aside .eyebrow { margin-left: auto; margin-right: auto; }
