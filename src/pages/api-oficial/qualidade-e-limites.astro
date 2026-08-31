@@ -1,0 +1,37 @@
+---
+/* Artigo: qualidade do número e limites de envio na API oficial. */
+import ApiPost from '../../components/api/ApiPost.astro';
+import Icon from '../../components/ui/Icon.astro';
+---
+
+<ApiPost slug="qualidade-e-limites">
+  <p>Quase nenhum bloqueio de número é súbito. Antes de a Meta derrubar um número, ela costuma passar semanas dando sinal. Só que esse sinal aparece num painel que existe apenas na <strong>API oficial</strong> e que a maioria das empresas nunca abriu. Quem aprende a ler os dois indicadores deste artigo consegue corrigir a rota antes de perder o canal.</p>
+  <h2>Os dois números que a Meta mostra</h2>
+  <p>Todo número conectado pela API oficial tem duas informações visíveis no WhatsApp Manager da Meta:</p>
+  <ul>
+    <li><strong>Classificação de qualidade:</strong> alta, média ou baixa (verde, amarelo, vermelho). É calculada a partir do que os clientes fazem com as suas mensagens (bloquear, denunciar, ignorar) numa janela recente de poucos dias.</li>
+    <li><strong>Limite de envio:</strong> quantos contatos <em>diferentes</em> a empresa pode alcançar por dia com mensagens que ela mesma inicia. Respostas dentro da janela de 24 horas não entram nessa conta.</li>
+  </ul>
+  <p>São indicadores independentes: um número pode ter limite alto e qualidade em queda. É exatamente essa combinação que costuma anteceder o problema.</p>
+  <h2>A escada dos limites</h2>
+  <p>Todo número novo começa restrito, com 250 contatos por dia, e só sai daí depois que a empresa é verificada na Meta. A partir da verificação, a escada sobe por degraus: 1.000, 10.000, 100.000 e, no topo, sem limite.</p>
+  <p>A subida é automática e depende de duas coisas ao mesmo tempo: usar boa parte do limite atual com consistência e manter a qualidade em alta. Não existe formulário pra pular degrau. O único controle real que você tem é a qualidade do que envia e de pra quem envia.</p>
+  <p>Vale a atenção de quem está começando: número novo, sem verificação da empresa concluída, não dispara campanha nenhuma. Se a operação depende de envio ativo, a verificação é o primeiro passo, não o último.</p>
+  <h2>O que acontece quando a qualidade cai</h2>
+  <p>Uma queda para qualidade baixa trava a escalada: enquanto o número estiver nessa faixa, ele não sobe de degrau. Se a nota não se recupera em cerca de uma semana, o limite costuma ser reduzido para o degrau anterior: de 100.000 para 10.000, e assim por diante. A Meta avisa por e-mail e pelo Business Manager quando isso acontece.</p>
+  <p>As regras exatas de rebaixamento mudaram algumas vezes nos últimos dois anos, e a documentação da Meta é a fonte que vale. O comportamento estável, esse sim, é o que importa na prática: qualidade baixa sempre custa alcance, mais cedo ou mais tarde.</p>
+  <h2>A sequência certa quando a nota cai</h2>
+  <p>A reação intuitiva (insistir, mandar mais, tentar compensar) é a pior possível. A ordem que funciona:</p>
+  <ul>
+    <li><strong>Pare os envios ativos</strong> por alguns dias. Não é castigo, é higiene: cada disparo novo alimenta a nota ruim.</li>
+    <li><strong>Descubra qual campanha causou.</strong> O painel mostra o histórico dos últimos 30 dias, então dá pra cruzar a queda com o dia do envio.</li>
+    <li><strong>Corte a base fria.</strong> Contatos que não interagem há meses são os que mais denunciam.</li>
+    <li><strong>Volte pequeno.</strong> Retome com a parcela mais engajada da base e só aumente quando a nota voltar ao verde.</li>
+  </ul>
+  <p>Isso é reação. A prevenção (opt-in, aquecimento de número novo, segmentação, saída fácil) está reunida no nosso <a href="/api-oficial/evitar-bloqueios/">guia de como evitar bloqueios no WhatsApp</a>, que vale a leitura antes da próxima campanha.</p>
+  <h2>Há um teto que não é seu</h2>
+  <p>Um detalhe que explica campanhas que "somem" sem erro aparente: a Meta limita quantas mensagens de marketing um mesmo usuário recebe por dia, somando todas as empresas. Se o seu cliente já recebeu promoção de outras marcas naquele dia, a sua pode simplesmente não ser entregue. É mais um argumento pra tratar aviso como utilidade e reservar marketing pro que é realmente promoção, inclusive porque <a href="/api-oficial/custos/">a diferença de preço entre as duas categorias é de dez vezes</a>.</p>
+  <h2>Quem conecta por QR Code não tem esse painel</h2>
+  <p>Vale dizer com todas as letras: nada disso existe na conexão por QR Code. Não há nota, não há limite publicado, não há aviso: o número funciona até o dia em que para de funcionar. Para atendimento receptivo isso raramente é problema, porque conversa que o cliente inicia quase não gera denúncia. Para quem envia em volume, é a diferença entre pilotar com painel e pilotar no escuro. O <a href="/api-oficial/qr-vs-api/">comparativo entre as duas conexões</a> detalha o resto das diferenças.</p>
+  <div class="apost-callout"><Icon name="chart" /><p>Coloque na rotina: abrir o WhatsApp Manager uma vez por semana e olhar a nota antes de aprovar a próxima campanha. Leva dois minutos e é o alerta mais barato que existe.</p></div>
+</ApiPost>

@@ -1,0 +1,17 @@
+---
+/* Rodapé compacto das páginas da Central da API oficial. */
+import Logo from '../ui/Logo.astro';
+import { API_HUB_PATH } from '../../data/apiPosts';
+---
+
+<footer class="api-foot">
+  <div class="wrap">
+    <a href="/"><Logo /></a>
+    <nav class="api-foot-links">
+      <a href="/">Início</a>
+      <a href={API_HUB_PATH}>Central da API oficial</a>
+      <a href="/#planos">Preços</a>
+    </nav>
+    <span>© 2026 Gechat · uma solução Gestonauta</span>
+  </div>
+</footer>

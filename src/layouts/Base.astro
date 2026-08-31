@@ -21,11 +21,14 @@ import poppins800 from '@fontsource/poppins/files/poppins-latin-800-normal.woff2
 interface Props {
   title?: string;
   description?: string;
+  /** og:type — "article" nas páginas da Central da API oficial */
+  ogType?: 'website' | 'article';
 }
 
 const {
   title = 'Gechat — o WhatsApp da sua empresa, organizado',
   description = 'O Gechat reúne os WhatsApps da sua empresa numa central única: filas por setor, transferências, histórico completo e métricas. Teste 7 dias grátis.',
+  ogType = 'website',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -74,7 +77,7 @@ const ogImage = new URL('/og.png', Astro.site);
     <link rel="preload" as="font" type="font/woff2" href={jakarta700} crossorigin />
     <link rel="preload" as="font" type="font/woff2" href={poppins800} crossorigin />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Gechat" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:title" content={title} />

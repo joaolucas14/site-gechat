@@ -1,0 +1,18 @@
+/* ============================================================
+   Faixa de confiança da API oficial (entre Planos e FAQ).
+   Portado do protótipo site.css (.tstrip).
+   ============================================================ */
+
+.tstrip { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.tstrip .wrap { display: flex; align-items: center; justify-content: center; gap: 26px; padding: 20px 24px; flex-wrap: wrap; }
+.tstrip-it { display: inline-flex; align-items: center; gap: 0; font-size: 14px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.tstrip-it b { color: var(--ink); font-weight: 800; }
+.tstrip-it .ic { width: 18px; height: 18px; color: var(--pri); margin-right: 9px; }
+.tstrip-it .tstrip-wa { color: #25D366; }
+.tstrip-meta { width: 26px; height: 26px; object-fit: contain; margin-right: 9px; }
+.tstrip-dot { flex: none; width: 4px; height: 4px; border-radius: 50%; background: var(--line-2); }
+
+@media (max-width: 700px) {
+  .tstrip .wrap { flex-direction: column; gap: 12px; }
+  .tstrip-dot { display: none; }
+}

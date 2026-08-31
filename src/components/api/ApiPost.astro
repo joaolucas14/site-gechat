@@ -1,0 +1,91 @@
+---
+/* Estrutura comum das páginas de artigo da Central da API oficial:
+   head (SEO + JSON-LD Article/Breadcrumb), header, corpo via slot,
+   CTA, "Continue lendo" e rodapé compacto. */
+import Base from '../../layouts/Base.astro';
+import Icon from '../ui/Icon.astro';
+import ApiHeader from './ApiHeader.astro';
+import ApiCta from './ApiCta.astro';
+import ApiCard from './ApiCard.astro';
+import ApiFooter from './ApiFooter.astro';
+import { API_POSTS, API_HUB_PATH, apiPostPath } from '../../data/apiPosts';
+import { WA_LINK } from '../../data/links';
+import '../../styles/sections/api.css';
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const post = API_POSTS.find((p) => p.slug === slug);
+if (!post) throw new Error(`Post desconhecido: "${slug}". Adicione em data/apiPosts.ts`);
+
+/* dois outros artigos pra seção "Continue lendo" (mesma regra do protótipo) */
+const others = API_POSTS.filter((p) => p.slug !== slug).slice(0, 2);
+
+const canonical = new URL(apiPostPath(post.slug), Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: post.title,
+      description: post.seoDesc,
+      inLanguage: 'pt-BR',
+      mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+      dateModified: post.updatedIso,
+      datePublished: post.updatedIso,
+      author: { '@id': '#gechat' },
+      publisher: { '@id': '#gechat' },
+    },
+    {
+      '@type': 'Organization',
+      '@id': '#gechat',
+      name: 'Gechat',
+      url: Astro.site?.href,
+      logo: { '@type': 'ImageObject', url: new URL('/og.png', Astro.site).href },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        url: WA_LINK,
+        availableLanguage: 'Portuguese',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Central da API oficial', item: new URL(API_HUB_PATH, Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: post.title, item: canonical },
+      ],
+    },
+  ],
+};
+---
+
+<Base title={post.seoTitle} description={post.seoDesc} ogType="article">
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+  <ApiHeader />
+  <main class="api-page">
+    <article class="apost">
+      <a class="apost-back" href={API_HUB_PATH}><Icon name="arrow_right" /> Central da API oficial</a>
+      <div><span class="api-card-tag"><Icon name={post.ic} /> {post.tag}</span></div>
+      <h1 class="h-display">{post.title}</h1>
+      <div class="apost-meta">
+        <span>{post.min} min de leitura</span>
+        <span>·</span>
+        <span>Atualizado em {post.updated}</span>
+      </div>
+      <div class="apost-body">
+        <slot />
+      </div>
+      <ApiCta />
+      <section class="api-more">
+        <h4>Continue lendo</h4>
+        <div class="api-cards">
+          {others.map((p) => <ApiCard post={p} />)}
+        </div>
+      </section>
+    </article>
+  </main>
+  <ApiFooter />
+</Base>

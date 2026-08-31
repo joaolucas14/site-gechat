@@ -1,0 +1,55 @@
+---
+/* Artigo: como evitar bloqueio de número no WhatsApp
+   (landing dos anúncios, por isso o tema não se repete nos outros posts). */
+import ApiPost from '../../components/api/ApiPost.astro';
+---
+
+<ApiPost slug="evitar-bloqueios">
+  <p>Poucas coisas travam o atendimento de uma empresa tão rápido quanto um número de WhatsApp bloqueado. De um dia para o outro, o histórico de conversas some do acesso, os clientes deixam de receber resposta e a equipe fica sem saber o que fazer. E o pior: muitas vezes o bloqueio acontece por descuidos simples, que dá para evitar com algumas práticas básicas.</p>
+  <p>Neste guia, você vai entender por que o WhatsApp bloqueia números comerciais, o que fazer para reduzir esse risco e como agir se isso já tiver acontecido com a sua empresa.</p>
+  <h2>Por que o WhatsApp bloqueia números comerciais</h2>
+  <p>O WhatsApp (Meta) monitora o comportamento de cada número para identificar uso considerado abusivo ou automatizado fora das regras da plataforma. Os motivos mais comuns de bloqueio são:</p>
+  <ul>
+    <li>Envio de mensagens em massa para contatos que não deram consentimento (a famosa "spammagem" fria)</li>
+    <li>Muitas denúncias de destinatários marcando o número como spam ou bloqueando o contato</li>
+    <li>Uso de aplicativos modificados, como WhatsApp GB ou WhatsApp Plus, que violam os termos de uso oficiais</li>
+    <li>Volume de mensagens muito acima do padrão humano em pouco tempo, especialmente para números que ainda não têm histórico de uso</li>
+    <li>Login e logout constantes em vários aparelhos ou reconexões suspeitas via QR Code em curto espaço de tempo</li>
+    <li>Baixa taxa de resposta dos clientes, o que sinaliza para o algoritmo que as mensagens enviadas podem não ser desejadas</li>
+  </ul>
+  <p>Nenhum desses fatores isolados costuma gerar bloqueio imediato: o problema é o acúmulo. Uma empresa que cresce, contrata mais atendentes e não organiza esse crescimento acaba, sem perceber, se aproximando de vários desses gatilhos ao mesmo tempo.</p>
+  <h2>Boas práticas para reduzir o risco de bloqueio</h2>
+  <ol>
+    <li><strong>Aqueça o número gradualmente.</strong> Se o número é novo ou você aumentou muito o volume de mensagens recentemente, vá aumentando aos poucos ao longo de 1-2 semanas em vez de disparar centenas de mensagens no primeiro dia.</li>
+    <li><strong>Nunca envie mensagens em massa para quem não pediu contato.</strong> Listas compradas ou capturadas sem consentimento são o principal gatilho de denúncias em massa, e várias denúncias em pouco tempo costumam resultar em bloqueio automático.</li>
+    <li><strong>Priorize quem já iniciou a conversa.</strong> Responder quem chamou primeiro tem risco praticamente zero. O risco cresce quando a empresa é quem inicia contato com desconhecidos.</li>
+    <li><strong>Fique longe de apps modificados.</strong> WhatsApp GB, Plus e variações não são reconhecidos pela Meta e o uso já é, por si só, motivo de banimento, independente do volume de mensagens.</li>
+    <li><strong>Evite reconexões frequentes do mesmo número em aparelhos diferentes.</strong> Trocar de dispositivo, desconectar e reconectar via QR Code repetidamente em curto espaço de tempo é um padrão que a plataforma associa a contas comprometidas.</li>
+    <li><strong>Mantenha uma boa taxa de resposta e engajamento.</strong> Números que recebem resposta e interação dos clientes são vistos como confiáveis. Isso é outro motivo para nunca disparar para listas frias.</li>
+    <li><strong>Padronize sem soar robótico.</strong> Mensagens idênticas, enviadas em sequência para muitos contatos diferentes, também podem acionar filtros de spam. Personalize o mínimo necessário para parecer uma conversa real.</li>
+  </ol>
+  <h2>O que fazer se o seu número for bloqueado</h2>
+  <p>Se, mesmo com cuidado, o bloqueio acontecer, alguns passos ajudam a reduzir o estrago:</p>
+  <ul>
+    <li><strong>Solicite a revisão dentro do próprio app.</strong> O WhatsApp costuma oferecer a opção de contestar o bloqueio explicando o uso do número. Nem sempre funciona, mas é o primeiro passo.</li>
+    <li><strong>Não tente burlar imediatamente com outro número no mesmo aparelho.</strong> Isso pode fazer o novo número herdar a mesma desconfiança do algoritmo.</li>
+    <li><strong>Tenha um número reserva já configurado.</strong> Empresas que dependem de um único número ficam completamente paradas durante o bloqueio. Ter um segundo número pronto para assumir o atendimento evita que a operação pare.</li>
+    <li><strong>Preserve o histórico de conversas em um lugar que não seja só o WhatsApp do celular.</strong> Se as conversas só existem dentro do aplicativo, um bloqueio apaga o acesso a anos de relacionamento com clientes de uma vez.</li>
+  </ul>
+  <h2>O verdadeiro problema, na maioria das vezes, não é o WhatsApp, é a falta de organização</h2>
+  <p>Se você reparar na lista de boas práticas acima, quase todas têm a mesma raiz: atendimento sem estrutura. Equipe respondendo pelo WhatsApp pessoal, sem saber quem já falou com quem, sem controle de volume, sem visibilidade do que está sendo enviado. É esse cenário que empurra a operação para perto dos gatilhos de bloqueio, e é também o que mais atrapalha o dia a dia, bloqueio à parte.</p>
+  <p>É aí que entra o Gechat: uma central de atendimento que organiza o WhatsApp da empresa de um jeito que, na prática, resolve boa parte da bagunça que gera esses riscos, e ainda deixa a operação mais profissional no geral.</p>
+  <p>O que muda no dia a dia com o Gechat:</p>
+  <ul>
+    <li><strong>Conexão oficial quando você precisar:</strong> o Gechat é Tech Provider homologado pela Meta, então dá para conectar um número pela <a href="/api-oficial/como-funciona/">API oficial do WhatsApp</a>, com nome verificado e sem depender de celular ligado, ou seguir pelo QR Code no que já funciona bem hoje. As duas formas convivem na mesma central, e a escolha é por número, não pela operação inteira.</li>
+    <li><strong>Filas por setor:</strong> cada cliente cai automaticamente na fila certa (vendas, suporte, financeiro), sem ninguém respondendo por engano o que não é da sua área nem dois atendentes escrevendo pro mesmo cliente ao mesmo tempo.</li>
+    <li><strong>Histórico completo e centralizado:</strong> toda conversa fica salva na central, não no celular de um atendente específico. Se alguém sai da empresa, o próximo assume o atendimento sabendo exatamente o que já foi falado.</li>
+    <li><strong>Múltiplos números e atendentes numa central só:</strong> comercial, suporte e loja física, cada um com seu número, todos gerenciados no mesmo painel, com visão completa de quem está atendendo o quê.</li>
+    <li><strong>URA de triagem automática:</strong> o cliente já chega direto no setor certo, 24h por dia, sem depender de alguém disponível pra encaminhar manualmente.</li>
+    <li><strong>Mensagens agendadas e retornos automáticos:</strong> follow-up programado sem depender da memória de ninguém, mesmo fora do horário comercial.</li>
+    <li><strong>Métricas reais da operação:</strong> tempo médio de espera, duração do atendimento e volume por setor. Dá pra enxergar gargalos antes que virem reclamação do cliente.</li>
+    <li><strong>Horário de atendimento e controle de inatividade:</strong> conversas paradas são encerradas automaticamente, e fora do expediente o cliente recebe resposta automática em vez de silêncio.</li>
+  </ul>
+  <p>O resultado é um atendimento mais rápido, mais rastreável e muito mais fácil de escalar conforme a equipe cresce, sem depender de planilha, celular pessoal ou "quem lembrar de responder".</p>
+  <p>E se a sua empresa envia mensagens ativas (notificações, lembretes, campanhas), vale entender como a API oficial muda esse risco: a Meta dá uma nota de qualidade ao seu número e define quanto ele pode enviar por dia. Os dois indicadores estão explicados em <a href="/api-oficial/qualidade-e-limites/">qualidade do número e limites de envio</a>.</p>
+</ApiPost>

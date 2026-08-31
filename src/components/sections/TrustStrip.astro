@@ -1,0 +1,21 @@
+---
+/* Faixa de confiança sobre a API oficial, entre Planos e FAQ. */
+import { Image } from 'astro:assets';
+import Icon from '../ui/Icon.astro';
+import metaLogo from '../../assets/meta-logo.png';
+import '../../styles/sections/tstrip.css';
+---
+
+<section class="tstrip" aria-label="Selos de confiança">
+  <div class="wrap">
+    <span class="tstrip-it">
+      <Image class="tstrip-meta" src={metaLogo} alt="Meta" width={52} height={52} draggable="false" />
+      <span class="tstrip-tx">Tech Provider <b>oficial da Meta</b></span>
+    </span>
+    <span class="tstrip-dot"></span>
+    <span class="tstrip-it">
+      <Icon name="whatsapp_real" class="tstrip-wa" />
+      <span class="tstrip-tx">API oficial do WhatsApp <b>disponível</b></span>
+    </span>
+  </div>
+</section>

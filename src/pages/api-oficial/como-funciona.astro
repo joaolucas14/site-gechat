@@ -1,0 +1,28 @@
+---
+/* Artigo: o que é a API oficial do WhatsApp e como funciona. */
+import ApiPost from '../../components/api/ApiPost.astro';
+import Icon from '../../components/ui/Icon.astro';
+---
+
+<ApiPost slug="como-funciona">
+  <p>A <strong>API oficial do WhatsApp</strong> (WhatsApp Business Platform) é o canal que a Meta criou pra empresas conectarem seus sistemas de atendimento diretamente ao WhatsApp, sem aplicativo, sem celular ligado e sem sessão espelhada. É por ela que operam bancos, companhias aéreas e e-commerces que enviam confirmações e atendem em escala.</p>
+  <h2>Como a conexão funciona</h2>
+  <p>O número da empresa é registrado numa conta do WhatsApp Business na Meta (a chamada <strong>WABA</strong>). A partir daí, as mensagens trafegam direto entre a infraestrutura da Meta e a plataforma de atendimento (no nosso caso, o Gechat). Não existe um aparelho intermediando a conversa: se o celular descarregar, cair a internet do escritório ou o app atualizar, a conexão não é afetada.</p>
+  <h2>O número sai do aplicativo</h2>
+  <p>Esse é o ponto que mais pega gente de surpresa: quando um número é migrado pra API, ele deixa de funcionar no WhatsApp e no WhatsApp Business do celular. A conversa passa a acontecer inteira dentro da plataforma de atendimento. Não é perda de recurso, é troca de lugar. Mas precisa estar claro antes de migrar o número que a equipe usa no balcão todo dia.</p>
+  <p>Por isso muita empresa mantém os números do dia a dia conectados por QR Code e leva pra API só os números que precisam de estabilidade e envio ativo. As duas formas convivem: veja o <a href="/api-oficial/qr-vs-api/">comparativo lado a lado</a>.</p>
+  <h2>A janela de 24 horas e os modelos de mensagem</h2>
+  <p>A API tem duas formas de conversar:</p>
+  <ul>
+    <li><strong>Cliente chama primeiro:</strong> abre-se uma janela de 24 horas em que a empresa responde livremente, como em qualquer conversa. Cada nova mensagem do cliente reinicia o contador.</li>
+    <li><strong>Empresa chama primeiro:</strong> o contato começa por um <strong>modelo de mensagem (template)</strong> aprovado previamente pela Meta. É assim que funcionam notificações de pedido, lembretes e campanhas.</li>
+  </ul>
+  <p>A aprovação de um template costuma sair em minutos, mas pode ser recusada se o texto parecer promoção disfarçada de aviso. Vale escrever o modelo antes de prometer a campanha pro cliente.</p>
+  <p>Essa regra existe pra proteger o usuário de spam, e é ela que torna o canal tão confiável.</p>
+  <h2>Nome verificado ao lado do número</h2>
+  <p>Com a API, o nome da empresa passa por verificação da Meta e aparece pro cliente mesmo que ele não tenha o número salvo. Na prática isso reduz a desconfiança logo na primeira mensagem, que é justamente onde a maioria das conversas ativas morre.</p>
+  <h2>E o que muda no dia a dia da equipe?</h2>
+  <p>Nada. No Gechat, um número conectado pela API entra nas mesmas filas, setores e histórico dos demais. A equipe atende na mesma tela: quem muda de caminho é a mensagem, não o atendente.</p>
+  <p>O que muda é a conta: a Meta cobra pelas mensagens enviadas pela API. Os valores por categoria estão em <a href="/api-oficial/custos/">quanto custa a API oficial</a>.</p>
+  <div class="apost-callout"><Icon name="check_circle" /><p>No Gechat, QR Code e API oficial convivem: você escolhe a forma de conexão por número, e pode combinar as duas na mesma operação.</p></div>
+</ApiPost>

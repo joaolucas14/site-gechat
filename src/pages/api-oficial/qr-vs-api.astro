@@ -1,0 +1,34 @@
+---
+/* Artigo: comparativo entre conexão por QR Code e API oficial. */
+import ApiPost from '../../components/api/ApiPost.astro';
+import Icon from '../../components/ui/Icon.astro';
+---
+
+<ApiPost slug="qr-vs-api">
+  <p>O Gechat conecta números de WhatsApp de duas formas: pelo <strong>QR Code</strong> (como o WhatsApp Web) ou pela <strong>API oficial</strong> da Meta. As duas funcionam na mesma tela de atendimento. A diferença está em como a mensagem chega até lá.</p>
+  <h2>Lado a lado</h2>
+  <table class="apost-table">
+    <thead><tr><th></th><th>QR Code</th><th>API oficial</th></tr></thead>
+    <tbody>
+      <tr><td>Conexão</td><td>Sessão espelhada do celular, como o WhatsApp Web</td><td>Direta com a infraestrutura da Meta, sem celular</td></tr>
+      <tr><td>Homologação</td><td>Não homologada pela Meta</td><td>Caminho oficial, dentro das regras da plataforma</td></tr>
+      <tr><td>Estabilidade</td><td>Depende do aparelho ligado e conectado</td><td>Não depende de aparelho; não cai por sessão</td></tr>
+      <tr><td>Número no celular</td><td>Continua funcionando normalmente no app</td><td>Sai do app: a conversa vive só na plataforma</td></tr>
+      <tr><td>Nome verificado</td><td>Não</td><td>Sim, aprovado pela Meta</td></tr>
+      <tr><td>Envio em volume</td><td>Arriscado; disparos em massa podem gerar bloqueio</td><td>Templates aprovados, feitos pra escala</td></tr>
+      <tr><td>Custo por mensagem</td><td>Não tem</td><td>Tarifa da Meta, cobrada direto na sua conta Meta</td></tr>
+      <tr><td>Indicado pra</td><td>Atendimento receptivo do dia a dia</td><td>Notificações ativas, campanhas e operações maiores</td></tr>
+    </tbody>
+  </table>
+  <h2>Os riscos da conexão por QR Code</h2>
+  <p>O QR Code usa o mesmo mecanismo do WhatsApp Web, um caminho feito pra uso pessoal, não pra automação em escala. Ele não é homologado pela Meta, e é honesto dizer isso antes de você escolher. Na prática, traz dois riscos:</p>
+  <ul>
+    <li><strong>Desconexões:</strong> se o celular ficar sem bateria ou sem internet, o número sai do ar até alguém reconectar.</li>
+    <li><strong>Bloqueio em disparos:</strong> envios em massa por conexões não homologadas são o principal gatilho de banimento de número pela Meta.</li>
+  </ul>
+  <p>Pra atendimento receptivo (cliente chama, equipe responde), o QR Code continua sendo uma opção simples, rápida e sem custo por mensagem. O risco cresce junto com o volume de mensagens que a empresa envia por iniciativa própria.</p>
+  <h2>Qual escolher?</h2>
+  <p>Não precisa escolher pra sempre. Uma combinação comum: números de atendimento do dia a dia no QR Code e um número na API oficial pra notificações e campanhas. Se um número é crítico pra operação, a API oficial é o caminho mais seguro.</p>
+  <p>Antes de decidir, vale olhar <a href="/api-oficial/custos/">quanto a Meta cobra por mensagem</a>: em operação receptiva a conta costuma ser menor do que se imagina.</p>
+  <div class="apost-callout"><Icon name="check_circle" /><p>Dá pra começar pelo QR Code hoje e ativar a API oficial depois, sem trocar de plataforma: o histórico e as filas ficam onde estão.</p></div>
+</ApiPost>

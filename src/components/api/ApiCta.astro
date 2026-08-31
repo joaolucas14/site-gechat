@@ -1,0 +1,29 @@
+---
+/* CTA em gradiente das páginas da API: teste grátis + WhatsApp. */
+import Btn from '../ui/Btn.astro';
+import Icon from '../ui/Icon.astro';
+import { WA_LINK, SIGNUP_LINK } from '../../data/links';
+
+interface Props {
+  title?: string;
+  sub?: string;
+}
+
+const {
+  title = 'Pronto pra atender pelo caminho oficial?',
+  sub = 'Teste o Gechat por 7 dias, sem cartão, ou chame a gente no WhatsApp pra tirar dúvidas sobre a API oficial.',
+} = Astro.props;
+---
+
+<div class="api-cta">
+  <h3>{title}</h3>
+  <p>{sub}</p>
+  <div class="api-cta-actions">
+    <Btn variant="white" size="lg" href={SIGNUP_LINK} onclick="fbq('track', 'Lead');">
+      Começar teste grátis <Icon name="arrow_right" />
+    </Btn>
+    <Btn variant="wa" size="lg" href={WA_LINK} target="_blank" rel="noopener" onclick="fbq('track', 'Contact');">
+      <Icon name="whatsapp_real" /> Falar no WhatsApp
+    </Btn>
+  </div>
+</div>

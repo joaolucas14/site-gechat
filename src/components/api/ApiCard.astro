@@ -1,0 +1,21 @@
+---
+/* Card de artigo da Central da API oficial (hub e "Continue lendo"). */
+import Icon from '../ui/Icon.astro';
+import { apiPostPath, type ApiPost } from '../../data/apiPosts';
+
+interface Props {
+  post: ApiPost;
+}
+
+const { post } = Astro.props;
+---
+
+<a class="api-card" href={apiPostPath(post.slug)}>
+  <span class="api-card-tag"><Icon name={post.ic} /> {post.tag}</span>
+  <h3>{post.title}</h3>
+  <p>{post.desc}</p>
+  <span class="api-card-meta">
+    <span>{post.min} min de leitura</span>
+    <span class="api-card-go">Ler artigo <Icon name="arrow_right" /></span>
+  </span>
+</a>

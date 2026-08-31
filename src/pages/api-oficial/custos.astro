@@ -1,0 +1,37 @@
+---
+/* Artigo: quanto custa a API oficial (cobrança da Meta). */
+import ApiPost from '../../components/api/ApiPost.astro';
+import Icon from '../../components/ui/Icon.astro';
+---
+
+<ApiPost slug="custos">
+  <p>A primeira coisa a saber: <strong>a mensalidade do Gechat não muda</strong> ao usar a API oficial. O que existe é uma tarifa da própria Meta sobre as mensagens que a sua empresa envia pela API, cobrada por ela direto na sua conta Meta, separada da assinatura da plataforma.</p>
+  <h2>Como a Meta cobra</h2>
+  <p>Desde julho de 2025, a cobrança é <strong>por mensagem entregue</strong> (antes era por conversa de 24 horas). O valor depende de duas coisas: a categoria da mensagem e o país de quem recebe. Receber mensagens não custa nada.</p>
+  <table class="apost-table">
+    <thead><tr><th>Categoria</th><th>O que é</th><th>Referência no Brasil*</th></tr></thead>
+    <tbody>
+      <tr><td>Marketing</td><td>Promoções, ofertas, campanhas</td><td>~R$ 0,31 por mensagem</td></tr>
+      <tr><td>Utilidade</td><td>Confirmações de pedido, avisos, lembretes</td><td>~R$ 0,03 por mensagem</td></tr>
+      <tr><td>Autenticação</td><td>Códigos de verificação</td><td>~R$ 0,03 por mensagem</td></tr>
+      <tr><td>Serviço</td><td>Suas respostas dentro da janela de 24h</td><td>Gratuito até 30/09/2026</td></tr>
+    </tbody>
+  </table>
+  <p>*Valores de referência, convertidos do dólar. A Meta publica a tabela oficial por país e categoria e costuma reajustá-la no início de cada trimestre. Consulte antes de fechar o orçamento de uma campanha.</p>
+  <h2>O que hoje não é cobrado</h2>
+  <ul>
+    <li><strong>Suas respostas dentro da janela de 24 horas.</strong> Cliente chamou, sua equipe responde à vontade, sem custo por mensagem.</li>
+    <li><strong>Templates de utilidade dentro dessa mesma janela.</strong> A confirmação enviada logo depois da conversa não entra na conta.</li>
+    <li><strong>Tudo o que acontece nas 72 horas seguintes a um anúncio de clique para WhatsApp</strong> ou a um botão de conversa em página do Facebook. Quem faz tráfego pago pro WhatsApp ganha uma janela gratuita bem maior. Vale planejar a campanha em cima disso.</li>
+  </ul>
+  <h2>O que muda em outubro de 2026</h2>
+  <p>A partir de <strong>1º de outubro de 2026</strong>, a Meta passa a cobrar pelas mensagens de serviço (as respostas que sua equipe escreve dentro da janela de 24 horas) e também pelos templates de utilidade enviados dentro dessa janela. O preço anunciado é o mesmo das categorias utilidade e autenticação do país, ou seja, centavos por mensagem. A janela gratuita de 72 horas vinda de anúncios continua valendo.</p>
+  <p>As tarifas finais por país devem ser publicadas pela Meta às vésperas da mudança. Se a sua operação é receptiva e de alto volume, vale simular o impacto agora: hoje essas respostas custam zero, e a partir de outubro passam a ter preço.</p>
+  <h2>Descontos por volume</h2>
+  <p>Quem envia bastante utilidade e autenticação recebe desconto progressivo da Meta conforme o volume mensal. Marketing não entra nesses descontos: é a categoria mais cara e sem abatimento, o que reforça a lógica de tratar aviso como aviso e promoção como promoção.</p>
+  <h2>Cobrança em reais</h2>
+  <p>Desde julho de 2026, empresas brasileiras elegíveis podem ser faturadas diretamente em reais pela entidade local da Meta, em vez de pagar em dólar com variação de câmbio. A migração se torna obrigatória até meados de 2027. Na prática, o custo fica mais previsível. Vale conferir o aviso na sua conta Meta.</p>
+  <h2>Na prática, quanto fica?</h2>
+  <p>Depende do perfil da operação. Um atendimento receptivo gasta centavos por conversa; já campanhas de marketing pra milhares de contatos são o que pesa. Por isso a conta certa é: <strong>notificações e campanhas na API</strong> (onde o custo compra estabilidade e escala) e o receptivo do dia a dia onde fizer mais sentido pro seu volume.</p>
+  <div class="apost-callout"><Icon name="card" /><p>Números conectados por QR Code não têm custo por mensagem, e convivem com números na API dentro do mesmo Gechat. Dá pra montar o mix que fecha a conta da sua operação.</p></div>
+</ApiPost>

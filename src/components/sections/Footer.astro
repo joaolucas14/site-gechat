@@ -4,7 +4,9 @@ import { Image } from 'astro:assets';
 import Logo from '../ui/Logo.astro';
 import Icon from '../ui/Icon.astro';
 import gestonautaSymbol from '../../assets/gestonauta-symbol.png';
+import metaLogo from '../../assets/meta-logo.png';
 import { WA_LINK, LOGIN_LINK, SIGNUP_LINK } from '../../data/links';
+import { API_HUB_PATH } from '../../data/apiPosts';
 import '../../styles/sections/final.css';
 ---
 
@@ -28,13 +30,20 @@ import '../../styles/sections/final.css';
         <a href={SIGNUP_LINK} onclick="fbq('track', 'Lead');">Teste grátis</a>
         <a href={LOGIN_LINK}>Entrar</a>
       </div>
-      <a class="foot-seal" href="https://gestonauta.com.br" target="_blank" rel="noopener">
-        <span class="fs-eyebrow"><Icon name="check_circle" /> Chancela de qualidade</span>
+      <a class="foot-seal" href={API_HUB_PATH} aria-label="Como funciona a API oficial">
+        <span class="fs-lock">
+          <Image class="fs-sym fs-sym--meta" src={metaLogo} alt="Meta" width={104} height={104} draggable="false" />
+          <span class="fs-word"><em>Tech Provider</em><b>Meta</b></span>
+        </span>
+        <span class="fs-sub">Integração homologada pela Meta para o WhatsApp Business Platform. Conexão estável, pelo caminho oficial.</span>
+        <span class="fs-link">Como funciona a API oficial <Icon name="arrow_right" /></span>
+      </a>
+      <a class="foot-seal" href="https://gestonauta.com.br" target="_blank" rel="noopener" aria-label="Conheça a Gestonauta">
         <span class="fs-lock">
           <Image class="fs-sym" src={gestonautaSymbol} alt="" width={104} height={104} draggable="false" />
           <span class="fs-word"><em>Uma solução</em><b>gestonauta</b></span>
         </span>
-        <span class="fs-sub">Feito por quem já cuida da gestão de centenas de empresas. Mesma equipe, mesmo padrão.</span>
+        <span class="fs-sub">Feito por quem já cuida da gestão de centenas de empresas, com a mesma equipe e o mesmo padrão.</span>
         <span class="fs-link">Conheça a Gestonauta <Icon name="arrow_right" /></span>
       </a>
     </div>

@@ -1,0 +1,122 @@
+---
+/* Central da API oficial: hub com os guias, FAQ e CTA.
+   Recebe tráfego de anúncios: SEO completo + JSON-LD
+   (CollectionPage com ItemList e FAQPage). */
+import Base from '../../layouts/Base.astro';
+import Btn from '../../components/ui/Btn.astro';
+import Icon from '../../components/ui/Icon.astro';
+import ApiHeader from '../../components/api/ApiHeader.astro';
+import ApiBadge from '../../components/api/ApiBadge.astro';
+import ApiCard from '../../components/api/ApiCard.astro';
+import ApiCta from '../../components/api/ApiCta.astro';
+import ApiFooter from '../../components/api/ApiFooter.astro';
+import { API_POSTS, API_FAQS, apiPostPath } from '../../data/apiPosts';
+import { WA_LINK, SIGNUP_LINK } from '../../data/links';
+import '../../styles/sections/api.css';
+import '../../styles/sections/faq.css';
+
+const title = 'API oficial do WhatsApp | Gechat';
+const description =
+  'Central de guias sobre a API oficial do WhatsApp: como funciona, custos, riscos do QR Code e como evitar bloqueios. Gechat é Tech Provider da Meta.';
+
+const stripHtml = (s: string) => s.replace(/<[^>]+>/g, '');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: title,
+      description,
+      inLanguage: 'pt-BR',
+      url: new URL(Astro.url.pathname, Astro.site).href,
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: API_POSTS.map((p, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: p.title,
+          url: new URL(apiPostPath(p.slug), Astro.site).href,
+        })),
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: API_FAQS.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: stripHtml(f.a) },
+      })),
+    },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+  <ApiHeader />
+  <main class="api-page">
+    <section class="api-hero">
+      <div class="wrap">
+        <ApiBadge />
+        <h1 class="h-display">A API oficial do WhatsApp, <span class="grad-ink">sem mistério.</span></h1>
+        <p class="lede">
+          Guias diretos sobre como a integração oficial da Meta funciona, quanto custa e como proteger
+          o número da sua empresa, escritos por quem é Tech Provider.
+        </p>
+        <div class="api-hero-actions">
+          <Btn variant="pri" size="lg" href={SIGNUP_LINK} onclick="fbq('track', 'Lead');">
+            Começar teste grátis <Icon name="arrow_right" />
+          </Btn>
+          <Btn variant="ghost" size="lg" href={WA_LINK} target="_blank" rel="noopener" onclick="fbq('track', 'Contact');">
+            <Icon name="whatsapp_real" /> Falar no WhatsApp
+          </Btn>
+        </div>
+      </div>
+    </section>
+    <div class="wrap">
+      <div class="api-cards">
+        {API_POSTS.map((post) => <ApiCard post={post} />)}
+      </div>
+    </div>
+    <section class="api-faqsec">
+      <div class="wrap">
+        <h2 class="h-display">Perguntas <span class="grad-ink">frequentes</span></h2>
+        <p class="lede">O essencial sobre a API oficial, em quatro respostas.</p>
+        <div class="api-faq" data-faq>
+          {API_FAQS.map((item, i) => (
+            <div class={'faq-item' + (i === 0 ? ' is-open' : '')}>
+              <button type="button" class="faq-q" aria-expanded={i === 0 ? 'true' : 'false'}>
+                {item.q}
+                <span class="faq-chev"><Icon name="arrow_down" /></span>
+              </button>
+              <div class="faq-a">
+                <div class="faq-a-in">
+                  <p set:html={item.a} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    <div class="wrap"><ApiCta /></div>
+  </main>
+  <ApiFooter />
+</Base>
+
+<script>
+  // Acordeão do FAQ: mesmo comportamento da home (uma aberta por vez).
+  for (const list of document.querySelectorAll('[data-faq]')) {
+    const items = [...list.querySelectorAll<HTMLElement>('.faq-item')];
+    for (const item of items) {
+      item.querySelector<HTMLButtonElement>('.faq-q')?.addEventListener('click', () => {
+        const open = !item.classList.contains('is-open');
+        for (const it of items) {
+          const on = open && it === item;
+          it.classList.toggle('is-open', on);
+          it.querySelector('.faq-q')?.setAttribute('aria-expanded', String(on));
+        }
+      });
+    }
+  }
+</script>
